@@ -1,0 +1,103 @@
+import java.text.SimpleDateFormat
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+ext.buildToolsVersion = "24.0.0-rc3"
+
+ext.minSdkVersion = 16
+ext.compileSdkVersion = 23
+ext.targetSdkVersion = 23
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.0'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+def computeVersionCode() {
+    def versionCodeFormat = new SimpleDateFormat("yyMMddHHmm")
+    def currentDate = versionCodeFormat.format(new Date())
+    return currentDate as Integer
+}
+
+def annotateApkFilename(final variant, final output) {
+    def apkSuffix = "-${variant.mergedFlavor.versionName}-{${cleanupString(gitTimestamp())}}-${gitBranch()}"
+    final def file = output.outputFile
+    //noinspection GroovyAssignabilityCheck
+    output.outputFile = new File(file.parent, file.name.replace(".apk", apkSuffix + ".apk"));
+}
+
+def getNow() {
+    final def date = new Date()
+    final def formattedDate = date.format('yyyy-MM-dd HH:mm:ssZ')
+    return formattedDate
+}
+
+def gitSha() {
+    return 'git rev-parse --short HEAD'.execute().text.trim()
+}
+
+def gitBranch() {
+    return 'git rev-parse --abbrev-ref HEAD'.execute().text.trim()
+}
+
+def gitDescribe() {
+    return 'git describe'.execute().text.trim()
+}
+
+def gitTimestamp() {
+    return 'git log --pretty=format:"%ai" -1'.execute().text.trim()
+}
+
+def cleanupString(final String str) {
+    if (str.length() > 0) {
+
+        String text = str.substring(1, str.length() - 1);
+        text = text.replaceAll(" ", "_");
+        text = text.replaceAll(":", "_");
+        return text;
+    } else {
+        return str;
+    }
+}
+
+def getDefaultExcludes() {
+    return [
+            'META-INF/DEPENDENCIES.txt',
+            'META-INF/DEPENDENCIES',
+            'META-INF/dependencies.txt',
+            'META-INF/LICENSE.txt',
+            'META-INF/LICENSE',
+            'META-INF/license.txt',
+            'META-INF/LGPL2.1',
+            'META-INF/NOTICE.txt',
+            'META-INF/NOTICE',
+            'META-INF/notice.txt',
+    ]
+}
+
+def quoteString(final String str) {
+    final String quote = "\"";
+
+    if (str.length() > 0) {
+        if (str.startsWith(quote) && str.endsWith(quote)) {
+            return str;
+        } else {
+            return quote + str + quote;
+        }
+    } else {
+        return quote + quote;
+    }
+}

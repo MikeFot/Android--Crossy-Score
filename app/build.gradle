@@ -1,0 +1,81 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+
+final int versionMajor = 0
+final int versionMinor = 0
+final int versionPatch = 1
+final String semanticVersion = "${versionMajor}.${versionMinor}.${versionPatch}"
+final String appCompatLibVersion = "23.3.0"
+
+final int targetSdk = rootProject.targetSdkVersion;
+final int minSdkRed = rootProject.minSdkVersion;
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.michaelfotiadis.crossyscore"
+
+        compileSdkVersion rootProject.compileSdkVersion
+        buildToolsVersion rootProject.buildToolsVersion
+
+        packagingOptions.excludes = getDefaultExcludes();
+
+        minSdkVersion minSdkRed
+        targetSdkVersion targetSdk
+
+        versionCode computeVersionCode()
+        versionName semanticVersion
+    }
+
+    productFlavors {
+        prod {
+            applicationId "com.michaelfotiadis.crossyscore"
+            resValue("string", "app_name", "Crossy Score")
+        }
+        dev {
+            applicationId "com.michaelfotiadis.crossyscore.playground"
+            resValue("string", "app_name", "Crossy Score Dev")
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile project(':core')
+
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    compile "com.android.support:appcompat-v7:$appCompatLibVersion"
+    compile "com.android.support:design:$appCompatLibVersion"
+    compile "com.android.support:cardview-v7:$appCompatLibVersion"
+    compile "com.android.support:recyclerview-v7:$appCompatLibVersion"
+
+    testCompile 'junit:junit:4.12'
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+        transitive = true;
+    }
+}
