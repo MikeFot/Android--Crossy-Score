@@ -12,6 +12,8 @@ public class ScoreImpl implements Score {
 
     @SerializedName("timeStamp")
     private final Long timeStamp;
+    @SerializedName("ownerId")
+    private final String ownerId;
     @SerializedName("value")
     private final Integer value;
     @SerializedName("mascot")
@@ -19,12 +21,14 @@ public class ScoreImpl implements Score {
 
     private ScoreImpl(final Builder builder) {
         timeStamp = builder.timeStamp;
+        ownerId = builder.ownerId;
         value = builder.value;
         mascot = builder.mascot;
     }
 
     protected ScoreImpl(final Parcel in) {
         this.timeStamp = (Long) in.readValue(Long.class.getClassLoader());
+        this.ownerId = in.readString();
         this.value = (Integer) in.readValue(Integer.class.getClassLoader());
         this.mascot = in.readParcelable(Mascot.class.getClassLoader());
     }
@@ -36,9 +40,15 @@ public class ScoreImpl implements Score {
     public static Builder newBuilder(final ScoreImpl copy) {
         final Builder builder = new Builder();
         builder.timeStamp = copy.timeStamp;
+        builder.ownerId = copy.ownerId;
         builder.value = copy.value;
         builder.mascot = copy.mascot;
         return builder;
+    }
+
+    @Override
+    public String getOwnerId() {
+        return ownerId;
     }
 
     @Override
@@ -57,6 +67,11 @@ public class ScoreImpl implements Score {
     }
 
     @Override
+    public Long getId() {
+        return getTimeStamp();
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
@@ -64,18 +79,15 @@ public class ScoreImpl implements Score {
     @Override
     public void writeToParcel(final Parcel dest, final int flags) {
         dest.writeValue(this.timeStamp);
+        dest.writeString(this.ownerId);
         dest.writeValue(this.value);
         dest.writeParcelable(this.mascot, flags);
-    }
-
-    @Override
-    public Long getId() {
-        return getTimeStamp();
     }
 
     public static final class Builder {
 
         private Long timeStamp;
+        private String ownerId;
         private Integer value;
         private Mascot mascot;
 
@@ -84,6 +96,11 @@ public class ScoreImpl implements Score {
 
         public Builder withTimeStamp(final Long val) {
             timeStamp = val;
+            return this;
+        }
+
+        public Builder withOwnerId(final String val) {
+            ownerId = val;
             return this;
         }
 

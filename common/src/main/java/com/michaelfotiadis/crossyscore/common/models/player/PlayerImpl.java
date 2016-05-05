@@ -19,25 +19,16 @@ public class PlayerImpl implements Player {
     @SerializedName("scores")
     private final List<Score> scores;
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public Long getRegisteredOn() {
-        return registeredOn;
-    }
-
-    @Override
-    public List<Score> getScores() {
-        return scores;
-    }
-
     private PlayerImpl(final Builder builder) {
         name = builder.name;
         registeredOn = builder.registeredOn;
         scores = builder.scores;
+    }
+
+    protected PlayerImpl(final Parcel in) {
+        this.name = in.readString();
+        this.registeredOn = (Long) in.readValue(Long.class.getClassLoader());
+        this.scores = in.createTypedArrayList(Score.CREATOR);
     }
 
     public static Builder newBuilder() {
@@ -53,10 +44,36 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public Long getRegisteredOn() {
+        return registeredOn;
+    }
+
+    @Override
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    @Override
     public String getId() {
         return getName();
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(final Parcel dest, final int flags) {
+        dest.writeString(this.name);
+        dest.writeValue(this.registeredOn);
+        dest.writeTypedList(scores);
+    }
 
     public static final class Builder {
 
@@ -85,24 +102,6 @@ public class PlayerImpl implements Player {
         public Player build() {
             return new PlayerImpl(this);
         }
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(final Parcel dest, final int flags) {
-        dest.writeString(this.name);
-        dest.writeValue(this.registeredOn);
-        dest.writeTypedList(scores);
-    }
-
-    protected PlayerImpl(final Parcel in) {
-        this.name = in.readString();
-        this.registeredOn = (Long) in.readValue(Long.class.getClassLoader());
-        this.scores = in.createTypedArrayList(Score.CREATOR);
     }
 
 }

@@ -23,6 +23,8 @@ public interface Score extends AppModel, WithLongId {
         }
     };
 
+    String getOwnerId();
+
     Long getTimeStamp();
 
     Integer getValue();
