@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'io.fabric.tools:gradle:1.+'
+        classpath 'io.fabric.tools:gradle:1.21.6'
     }
 }
 apply plugin: 'com.android.application'
@@ -55,10 +55,29 @@ android {
     }
 
     buildTypes {
+
         release {
             minifyEnabled false
+            debuggable false
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "Boolean", "DEV_MODE", "false"
         }
+
+        debug {
+            testCoverageEnabled true
+            debuggable true
+
+            buildConfigField "Boolean", "DEV_MODE", "true"
+        }
+
+        applicationVariants.all { final variant ->
+            variant.outputs.each { final output ->
+                annotateApkFilename(variant, output);
+            }
+        }
+
     }
 }
 
