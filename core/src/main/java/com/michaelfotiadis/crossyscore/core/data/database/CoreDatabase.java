@@ -2,8 +2,10 @@ package com.michaelfotiadis.crossyscore.core.data.database;
 
 import android.content.Context;
 
+import com.michaelfotiadis.crossyscore.core.data.database.accessors.Players;
 import com.michaelfotiadis.crossyscore.core.data.database.accessors.Scores;
 import com.michaelfotiadis.crossyscore.core.data.database.contracts.DbTable;
+import com.michaelfotiadis.crossyscore.core.data.database.contracts.PlayersContract;
 import com.michaelfotiadis.crossyscore.core.data.database.contracts.ScoresContract;
 
 import java.util.HashMap;
@@ -17,6 +19,7 @@ public final class CoreDatabase {
     private static CoreDatabase sInstance;
     private final CoreDbHelper mHelper;
 
+    private final Players mPlayers;
     private final Scores mScores;
 
     private CoreDatabase(final Context context) {
@@ -28,6 +31,7 @@ public final class CoreDatabase {
             map.put(table.getTableName(), table);
         }
 
+        mPlayers = new Players(mHelper, (PlayersContract) map.get(PlayersContract.TABLE_NAME));
         mScores = new Scores(mHelper, (ScoresContract) map.get(ScoresContract.TABLE_NAME));
 
     }
@@ -47,6 +51,10 @@ public final class CoreDatabase {
 
     public void forceOpen() {
         mHelper.getReadableDatabase();
+    }
+
+    public Players getPlayers() {
+        return mPlayers;
     }
 
     public Scores getScores() {

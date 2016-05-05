@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
 import com.michaelfotiadis.crossyscore.core.data.database.CoreDatabase;
+import com.michaelfotiadis.crossyscore.core.data.database.accessors.Players;
+import com.michaelfotiadis.crossyscore.core.data.database.accessors.Scores;
 import com.michaelfotiadis.crossyscore.core.data.parsers.mascots.MascotsParser;
 
 import java.util.List;
@@ -23,8 +25,13 @@ public class DataProvider {
     }
 
     @SuppressWarnings("MethodMayBeStatic")
-    public CoreDatabase getDatabase() {
-        return CoreDatabase.getInstance();
+    public Players getPlayers() {
+        return CoreDatabase.getInstance().getPlayers();
+    }
+
+    @SuppressWarnings("MethodMayBeStatic")
+    public Scores getScores() {
+        return CoreDatabase.getInstance().getScores();
     }
 
     public List<Mascot> getMascots() {
