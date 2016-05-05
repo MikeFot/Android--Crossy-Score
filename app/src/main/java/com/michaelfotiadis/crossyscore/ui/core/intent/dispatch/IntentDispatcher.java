@@ -19,4 +19,5 @@ public interface IntentDispatcher {
     void openCreateActivity(View source);
 
     IntentFactory getIntentFactory();
+
 }

@@ -7,12 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.michaelfotiadis.crossyscore.R;
+import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
+import com.michaelfotiadis.crossyscore.core.CrossyCore;
 import com.michaelfotiadis.crossyscore.ui.core.common.fragment.BaseFragment;
+
+import java.util.List;
 
 /**
  *
  */
 public class CreateFragment extends BaseFragment {
+
+    private CreateController mController;
 
     public static CreateFragment newInstance() {
         return new CreateFragment();
@@ -26,6 +32,7 @@ public class CreateFragment extends BaseFragment {
 
         final View view = inflater.inflate(R.layout.fragment_create, container, false);
 
+        mController = new CreateController(getActivity(), view);
 
         return view;
     }
@@ -33,6 +40,10 @@ public class CreateFragment extends BaseFragment {
     @Override
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        final List<Mascot> mascots = CrossyCore.getDataProvider().getMascots();
+
+        mController.setData(mascots);
     }
 
 }

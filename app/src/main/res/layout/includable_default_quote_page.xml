@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="24sp"
-            tools:text="It is better to travel well than to arrive. Unless you are going to hospital."/>
+            tools:text="Something went wrong"/>
 
 
         <Button

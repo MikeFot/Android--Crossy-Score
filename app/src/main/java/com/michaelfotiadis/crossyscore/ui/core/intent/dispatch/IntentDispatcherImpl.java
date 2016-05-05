@@ -54,7 +54,7 @@ public class IntentDispatcherImpl implements IntentDispatcher {
 
     @Override
     public void openCreateActivity(final View source) {
-        AppLog.d("Starting sign-in activity");
+        AppLog.d("Starting create activity");
         final Intent intent = mIntentFactory.getCreateIntent();
 
         mDispatcher.withView(source)

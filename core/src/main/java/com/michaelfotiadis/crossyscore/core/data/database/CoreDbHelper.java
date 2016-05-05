@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.michaelfotiadis.crossyscore.core.data.database.contracts.DbTable;
+import com.michaelfotiadis.crossyscore.core.data.database.contracts.PlayersContract;
 import com.michaelfotiadis.crossyscore.core.data.database.contracts.ScoresContract;
 
 
@@ -15,6 +16,7 @@ import com.michaelfotiadis.crossyscore.core.data.database.contracts.ScoresContra
     private static final int DATABASE_VERSION = 1;
 
     private static final DbTable[] TABLE_CONTRACTS = {
+            new PlayersContract(),
             new ScoresContract()
     };
 

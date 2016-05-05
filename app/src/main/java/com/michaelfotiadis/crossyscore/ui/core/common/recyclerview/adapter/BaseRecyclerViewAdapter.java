@@ -14,12 +14,15 @@ import java.util.List;
 
 public abstract class BaseRecyclerViewAdapter<D, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
+    private final Activity mActivity;
     private final IntentDispatcher mIntentDispatcher;
     private final List<D> mItems = new ArrayList<>();
     private boolean dataAdditionAttempted = false;
     private OnItemsChangedListener listener;
 
-    protected BaseRecyclerViewAdapter(final IntentDispatcher intentDispatcher) {
+    protected BaseRecyclerViewAdapter(final Activity activity,
+                                      final IntentDispatcher intentDispatcher) {
+        mActivity = activity;
         mIntentDispatcher = intentDispatcher;
     }
 
