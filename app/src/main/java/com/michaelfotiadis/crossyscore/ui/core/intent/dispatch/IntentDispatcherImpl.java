@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.michaelfotiadis.crossyscore.ui.core.intent.factory.IntentFactory;
 import com.michaelfotiadis.crossyscore.ui.core.intent.factory.IntentFactoryImpl;
+import com.michaelfotiadis.crossyscore.utils.AppLog;
 
 
 /**
@@ -38,6 +39,26 @@ public class IntentDispatcherImpl implements IntentDispatcher {
                 .withView(source)
                 .withAnimation(ActivityAnimation.SCALE_UP_FROM_VIEW)
                 .forResult(requestCode)
+                .dispatch(intent);
+    }
+
+    @Override
+    public void openHomeActivity() {
+        AppLog.d("Starting sign-in activity");
+        final Intent intent = mIntentFactory.getHomeIntent();
+
+        mDispatcher
+                .withAnimation(ActivityAnimation.SLIDE_UP_FROM_BOTTOM)
+                .dispatch(intent);
+    }
+
+    @Override
+    public void openCreateActivity(final View source) {
+        AppLog.d("Starting sign-in activity");
+        final Intent intent = mIntentFactory.getCreateIntent();
+
+        mDispatcher.withView(source)
+                .withAnimation(ActivityAnimation.SCALE_UP_FROM_VIEW)
                 .dispatch(intent);
     }
 

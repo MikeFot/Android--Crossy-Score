@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 
 import com.michaelfotiadis.crossyscore.ui.core.common.controller.BaseViewController;
-import com.michaelfotiadis.crossyscore.ui.core.common.notifications.AppToast;
 import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
 
 import butterknife.ButterKnife;
@@ -33,7 +32,7 @@ import butterknife.ButterKnife;
         mHolder.getFab().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                AppToast.show(getContext(), "Stuff");
+                dispatcher.openCreateActivity(mHolder.getFab());
             }
         });
 

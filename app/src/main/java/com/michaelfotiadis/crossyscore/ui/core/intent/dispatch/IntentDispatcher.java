@@ -10,10 +10,13 @@ import com.michaelfotiadis.crossyscore.ui.core.intent.factory.IntentFactory;
  */
 public interface IntentDispatcher {
 
-
     void dispatch(View source, Intent intent);
 
     void dispatchForResult(View source, Intent intent, int requestCode);
+
+    void openHomeActivity();
+
+    void openCreateActivity(View source);
 
     IntentFactory getIntentFactory();
 }
