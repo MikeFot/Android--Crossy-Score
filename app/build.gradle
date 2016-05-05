@@ -41,6 +41,10 @@ android {
 
         versionCode computeVersionCode()
         versionName semanticVersion
+
+        proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                'proguard/proguard-gson.pro'
+
     }
 
     productFlavors {
