@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.core.data.parsers;
+package com.michaelfotiadis.crossyscore.core.data.parsers.gson;
 
 import com.google.gson.stream.JsonReader;
 import com.michaelfotiadis.crossyscore.core.utils.SdkConstants;

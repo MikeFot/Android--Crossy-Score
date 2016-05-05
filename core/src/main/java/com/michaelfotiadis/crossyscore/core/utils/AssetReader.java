@@ -3,7 +3,7 @@ package com.michaelfotiadis.crossyscore.core.utils;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.michaelfotiadis.crossyscore.core.data.parsers.CoreGson;
+import com.michaelfotiadis.crossyscore.core.data.parsers.gson.CoreGson;
 
 import java.io.BufferedReader;
 import java.io.IOException;

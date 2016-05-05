@@ -13,7 +13,7 @@ import com.michaelfotiadis.crossyscore.core.data.database.cache.InMemoryCache;
 import com.michaelfotiadis.crossyscore.core.data.database.definitions.DbColumn;
 import com.michaelfotiadis.crossyscore.core.data.database.definitions.DbInteger;
 import com.michaelfotiadis.crossyscore.core.data.database.definitions.DbText;
-import com.michaelfotiadis.crossyscore.core.data.parsers.CoreGson;
+import com.michaelfotiadis.crossyscore.core.data.parsers.gson.CoreGson;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -3,6 +3,7 @@ package com.michaelfotiadis.crossyscore.ui.core.common.viewmanagement;
 import android.view.View;
 import android.widget.ViewFlipper;
 
+import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.ui.core.common.error.errorpage.DefaultQuotePageController;
 import com.michaelfotiadis.crossyscore.ui.core.common.error.errorpage.QuoteOnClickListenerWrapper;
 import com.michaelfotiadis.crossyscore.ui.core.common.error.errorpage.QuotePageController;
@@ -55,15 +56,13 @@ public class SimpleUiStateKeeper implements UiStateKeeper {
         }
 
         if (mErrorViewIndex != INVALID_INDEX) {
-            mErrorPageController = new DefaultQuotePageController(getErrorView(),
-                    new ErrorQuotePicker(view.getContext()));
+            mErrorPageController = new DefaultQuotePageController(getErrorView());
         } else {
             mErrorPageController = null;
         }
 
         if (mEmptyViewIndex != INVALID_INDEX) {
-            mEmptyPageController = new DefaultQuotePageController(getEmptyView(),
-                    new EmptyQuotePicker(view.getContext()));
+            mEmptyPageController = new DefaultQuotePageController(getEmptyView());
         } else {
             mEmptyPageController = null;
         }

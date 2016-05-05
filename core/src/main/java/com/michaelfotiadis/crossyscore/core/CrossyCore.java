@@ -2,7 +2,7 @@ package com.michaelfotiadis.crossyscore.core;
 
 import android.content.Context;
 
-import com.michaelfotiadis.crossyscore.core.data.database.CoreDatabase;
+import com.michaelfotiadis.crossyscore.core.data.DataProvider;
 import com.michaelfotiadis.crossyscore.core.utils.SdkLog;
 
 /**
@@ -12,6 +12,7 @@ public final class CrossyCore {
     private static final Object LOCK = new Object();
     private static CrossyCore sInstance;
     private boolean mIsDebugEnabled;
+    private DataProvider mDataProvider;
 
     private CrossyCore() {
         // DO NOT INSTANTIATE
@@ -38,7 +39,8 @@ public final class CrossyCore {
 
         final Context context = applicationContext.getApplicationContext();
         getInstance().mIsDebugEnabled = isDebug;
-        CoreDatabase.setContext(context);
+
+        getInstance().mDataProvider = new DataProvider(context);
 
         SdkLog.d("Core Initialised");
     }
@@ -47,8 +49,7 @@ public final class CrossyCore {
         return getInstance().mIsDebugEnabled;
     }
 
-    public static CoreDatabase getDatabase() {
-        return CoreDatabase.getInstance();
+    public static DataProvider getDataProvider() {
+        return getInstance().mDataProvider;
     }
-
 }

@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.core.data.parsers;
+package com.michaelfotiadis.crossyscore.core.data.parsers.gson;
 
 import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
 import com.michaelfotiadis.crossyscore.common.models.mascot.MascotImpl;

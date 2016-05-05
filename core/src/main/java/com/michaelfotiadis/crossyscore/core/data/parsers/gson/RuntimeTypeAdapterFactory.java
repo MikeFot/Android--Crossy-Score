@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.michaelfotiadis.crossyscore.core.data.parsers;
+package com.michaelfotiadis.crossyscore.core.data.parsers.gson;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;

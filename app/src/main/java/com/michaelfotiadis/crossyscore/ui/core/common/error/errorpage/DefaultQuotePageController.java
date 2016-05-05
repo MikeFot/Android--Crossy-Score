@@ -4,6 +4,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.michaelfotiadis.crossyscore.R;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -14,10 +16,6 @@ public class DefaultQuotePageController implements QuotePageController {
 
     @Bind(R.id.error_button)
     protected Button mActionButton;
-    @Bind(R.id.error_quote_author)
-    protected TextView mAuthor;
-    @Bind(R.id.error_description)
-    protected TextView mErrorDescription;
     @Bind(R.id.error_quote)
     protected TextView mQuote;
 
@@ -33,11 +31,7 @@ public class DefaultQuotePageController implements QuotePageController {
     @Override
     public void display(final CharSequence message, final QuoteOnClickListenerWrapper listenerWrapper) {
 
-        final Quote quote = mQuotePicker.getQuote();
-        mQuote.setText(quote.getQuote());
-        mAuthor.setText(quote.getAuthor());
-
-        mErrorDescription.setText(message);
+        mQuote.setText(message);
 
         if (listenerWrapper == null || listenerWrapper.getListener() == null) {
             mActionButton.setVisibility(View.GONE);
