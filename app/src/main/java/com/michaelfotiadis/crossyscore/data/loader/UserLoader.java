@@ -33,7 +33,6 @@ public class UserLoader extends DataFeedLoaderAbstract<User> {
             AppLog.d("Loaded " + scores.size() + " scores");
         }
 
-
         final List<Player> players = CrossyCore.getDataProvider().getPlayers().getAll();
         if (players == null) {
             notifyError(new UiDataLoadError("Null players found", UiDataLoadError.ErrorKind.NO_DATA, false));
