@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.create.mascot;
+package com.michaelfotiadis.crossyscore.ui.components.create.user;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -10,7 +10,7 @@ import com.michaelfotiadis.crossyscore.ui.core.common.viewholder.BaseViewHolder;
 import butterknife.Bind;
 
 
-public final class ListMascotViewHolder extends BaseViewHolder {
+public final class ListUserViewHolder extends BaseViewHolder {
 
     private static final int LAYOUT_ID = R.layout.list_item_two_lines_image;
     @Bind(R.id.line1)
@@ -20,7 +20,7 @@ public final class ListMascotViewHolder extends BaseViewHolder {
     @Bind(R.id.image)
     protected ImageView image;
 
-    public ListMascotViewHolder(final View view) {
+    public ListUserViewHolder(final View view) {
         super(view);
     }
 

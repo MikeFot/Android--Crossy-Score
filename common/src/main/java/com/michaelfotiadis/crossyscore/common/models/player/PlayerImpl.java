@@ -18,17 +18,21 @@ public class PlayerImpl implements Player {
     private final Long registeredOn;
     @SerializedName("scores")
     private final List<Score> scores;
+    @SerializedName("drawableResId")
+    private final Integer drawableResId;
 
     private PlayerImpl(final Builder builder) {
         name = builder.name;
         registeredOn = builder.registeredOn;
         scores = builder.scores;
+        drawableResId = builder.drawableResId;
     }
 
     protected PlayerImpl(final Parcel in) {
         this.name = in.readString();
         this.registeredOn = (Long) in.readValue(Long.class.getClassLoader());
         this.scores = in.createTypedArrayList(Score.CREATOR);
+        this.drawableResId = (Integer) in.readValue(Integer.class.getClassLoader());
     }
 
     public static Builder newBuilder() {
@@ -40,7 +44,13 @@ public class PlayerImpl implements Player {
         builder.name = copy.name;
         builder.registeredOn = copy.registeredOn;
         builder.scores = copy.scores;
+        builder.drawableResId = copy.drawableResId;
         return builder;
+    }
+
+    @Override
+    public Integer getDrawableResId() {
+        return drawableResId;
     }
 
     @Override
@@ -73,6 +83,7 @@ public class PlayerImpl implements Player {
         dest.writeString(this.name);
         dest.writeValue(this.registeredOn);
         dest.writeTypedList(scores);
+        dest.writeValue(this.drawableResId);
     }
 
     public static final class Builder {
@@ -80,6 +91,7 @@ public class PlayerImpl implements Player {
         private String name;
         private Long registeredOn;
         private List<Score> scores;
+        private Integer drawableResId;
 
         private Builder() {
         }
@@ -96,6 +108,11 @@ public class PlayerImpl implements Player {
 
         public Builder withScores(final List<Score> val) {
             scores = val;
+            return this;
+        }
+
+        public Builder withDrawableResId(final Integer val) {
+            drawableResId = val;
             return this;
         }
 

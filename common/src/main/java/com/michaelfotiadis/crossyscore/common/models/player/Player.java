@@ -25,6 +25,8 @@ public interface Player extends AppModel, WithStringId {
         }
     };
 
+    Integer getDrawableResId();
+
     String getName();
 
     Long getRegisteredOn();

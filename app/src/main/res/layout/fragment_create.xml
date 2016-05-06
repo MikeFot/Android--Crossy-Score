@@ -12,6 +12,6 @@
         android:layout_margin="@dimen/margin_16dp"
         android:background="@color/color_window_background_alt"
         android:padding="@dimen/dimen_padding_small"
-        tools:listitem="@layout/list_item_mascot"/>
+        tools:listitem="@layout/list_item_two_lines_image"/>
 
 </RelativeLayout>
