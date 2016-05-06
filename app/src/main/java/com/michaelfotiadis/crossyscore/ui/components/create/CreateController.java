@@ -1,18 +1,17 @@
 package com.michaelfotiadis.crossyscore.ui.components.create;
 
 import android.app.Activity;
-import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.Spinner;
 
+import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
+import com.michaelfotiadis.crossyscore.ui.components.create.mascot.ListMascotAdapter;
 import com.michaelfotiadis.crossyscore.ui.core.common.controller.BaseViewController;
-import com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.manager.RecyclerManager;
-import com.michaelfotiadis.crossyscore.ui.core.common.viewmanagement.SimpleUiStateKeeper;
-import com.michaelfotiadis.crossyscore.ui.core.common.viewmanagement.UiStateKeeper;
 
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -20,30 +19,26 @@ import butterknife.ButterKnife;
  */
 public class CreateController extends BaseViewController {
 
-    private final CreateViewHolder mHolder;
-    private final CreateViewBinder mBinder;
+    @Bind(R.id.spinner_mascot)
+    protected Spinner mMascotSpinner;
 
-    private final RecyclerManager<Mascot> mMascotRecyclerManager;
+    private final ListMascotAdapter mMascotAdapter;
 
-    public CreateController(final Context context, final View view) {
-        super(context, view);
+    public CreateController(final Activity activity, final View view) {
+        super(activity, view);
+        ButterKnife.bind(this, view);
 
-        mHolder = new CreateViewHolder(view);
-        ButterKnife.bind(mHolder, view);
-        mBinder = new CreateViewBinder(context);
+        mMascotAdapter = new ListMascotAdapter(activity);
+        mMascotSpinner.setAdapter(mMascotAdapter);
 
-        final UiStateKeeper uiStateKeeper = new SimpleUiStateKeeper(view, mHolder.getMascotRecyclerLayout());
-        mHolder.getMascotRecyclerLayout().setHasFixedSize(true);
-        mHolder.getMascotRecyclerLayout().setLayoutManager(new LinearLayoutManager(context));
-        mMascotRecyclerManager = new RecyclerManager.Builder<>(new RecyclerViewAdapter((Activity) context))
-                .setRecycler(mHolder.getMascotRecyclerLayout())
-                .setStateKeeper(uiStateKeeper)
-                .setEmptyMessage(null)
-                .build();
+    }
+
+    public void clearMascots() {
+        mMascotAdapter.clear();
     }
 
     public void setData(final List<Mascot> items) {
-        mMascotRecyclerManager.addItems(items);
+        mMascotAdapter.setItems(items);
     }
 
 }

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_16dp"
+    card_view:cardElevation="@dimen/fab_elevation">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -34,8 +37,9 @@
                 android:layout_alignParentTop="true"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:textSize="18sp"
-                tools:text="line1"/>
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="Chicken"/>
 
             <TextView
                 android:id="@+id/line2"
@@ -43,10 +47,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/line1"
+                android:layout_marginTop="@dimen/margin_8dp"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:textSize="18sp"
-                tools:text="line2"/>
+                android:textSize="14sp"
+                tools:text="Egg"/>
 
         </RelativeLayout>
     </RelativeLayout>

@@ -1,6 +1,6 @@
 package com.michaelfotiadis.crossyscore.ui.core.common.controller;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 
 /**
@@ -8,19 +8,21 @@ import android.view.View;
  */
 public abstract class BaseViewController {
 
-    private final Context mContext;
+    private final Activity mActivity;
     private final View mView;
 
-    public BaseViewController(final Context context, final View view) {
-        this.mContext = context;
+    public BaseViewController(final Activity activity, final View view) {
+        this.mActivity = activity;
         this.mView = view;
     }
+
 
     public View getView() {
         return mView;
     }
 
-    public Context getContext() {
-        return mContext;
+    public Activity getActivity() {
+        return mActivity;
     }
+
 }
