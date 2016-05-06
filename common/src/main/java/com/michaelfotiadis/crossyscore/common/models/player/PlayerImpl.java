@@ -3,9 +3,6 @@ package com.michaelfotiadis.crossyscore.common.models.player;
 import android.os.Parcel;
 
 import com.google.gson.annotations.SerializedName;
-import com.michaelfotiadis.crossyscore.common.models.score.Score;
-
-import java.util.List;
 
 /**
  *
@@ -14,24 +11,24 @@ public class PlayerImpl implements Player {
 
     @SerializedName("name")
     private final String name;
+    @SerializedName("alias")
+    private final String alias;
     @SerializedName("registeredOn")
     private final Long registeredOn;
-    @SerializedName("scores")
-    private final List<Score> scores;
     @SerializedName("drawableResId")
     private final Integer drawableResId;
 
     private PlayerImpl(final Builder builder) {
         name = builder.name;
+        alias = builder.alias;
         registeredOn = builder.registeredOn;
-        scores = builder.scores;
         drawableResId = builder.drawableResId;
     }
 
     protected PlayerImpl(final Parcel in) {
         this.name = in.readString();
+        this.alias = in.readString();
         this.registeredOn = (Long) in.readValue(Long.class.getClassLoader());
-        this.scores = in.createTypedArrayList(Score.CREATOR);
         this.drawableResId = (Integer) in.readValue(Integer.class.getClassLoader());
     }
 
@@ -42,10 +39,15 @@ public class PlayerImpl implements Player {
     public static Builder newBuilder(final PlayerImpl copy) {
         final Builder builder = new Builder();
         builder.name = copy.name;
+        builder.alias = copy.alias;
         builder.registeredOn = copy.registeredOn;
-        builder.scores = copy.scores;
         builder.drawableResId = copy.drawableResId;
         return builder;
+    }
+
+    @Override
+    public String getAlias() {
+        return alias;
     }
 
     @Override
@@ -64,11 +66,6 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public List<Score> getScores() {
-        return scores;
-    }
-
-    @Override
     public String getId() {
         return getName();
     }
@@ -81,16 +78,16 @@ public class PlayerImpl implements Player {
     @Override
     public void writeToParcel(final Parcel dest, final int flags) {
         dest.writeString(this.name);
+        dest.writeString(this.alias);
         dest.writeValue(this.registeredOn);
-        dest.writeTypedList(scores);
         dest.writeValue(this.drawableResId);
     }
 
     public static final class Builder {
 
         private String name;
+        private String alias;
         private Long registeredOn;
-        private List<Score> scores;
         private Integer drawableResId;
 
         private Builder() {
@@ -101,13 +98,13 @@ public class PlayerImpl implements Player {
             return this;
         }
 
-        public Builder withRegisteredOn(final Long val) {
-            registeredOn = val;
+        public Builder withAlias(final String val) {
+            alias = val;
             return this;
         }
 
-        public Builder withScores(final List<Score> val) {
-            scores = val;
+        public Builder withRegisteredOn(final Long val) {
+            registeredOn = val;
             return this;
         }
 
@@ -120,5 +117,6 @@ public class PlayerImpl implements Player {
             return new PlayerImpl(this);
         }
     }
+
 
 }

@@ -2,14 +2,25 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <Spinner
         android:id="@+id/spinner_mascot"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16dp"
+        android:layout_margin="@dimen/margin_8dp"
+        android:background="@color/color_window_background_alt"
+        android:padding="@dimen/dimen_padding_small"
+        tools:listitem="@layout/list_item_two_lines_image"/>
+
+    <Spinner
+        android:id="@+id/spinner_player"
+        android:layout_below="@id/spinner_mascot"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_8dp"
         android:background="@color/color_window_background_alt"
         android:padding="@dimen/dimen_padding_small"
         tools:listitem="@layout/list_item_two_lines_image"/>

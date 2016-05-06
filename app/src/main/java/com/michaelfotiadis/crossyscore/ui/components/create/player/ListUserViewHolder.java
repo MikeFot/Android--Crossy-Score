@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.create.user;
+package com.michaelfotiadis.crossyscore.ui.components.create.player;
 
 import android.view.View;
 import android.widget.ImageView;

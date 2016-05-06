@@ -1,15 +1,15 @@
-package com.michaelfotiadis.crossyscore.ui.components.create.user;
+package com.michaelfotiadis.crossyscore.ui.components.create.player;
 
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
+import com.michaelfotiadis.crossyscore.data.models.User;
 import com.michaelfotiadis.crossyscore.ui.core.common.list.BaseListAdapter;
 
 import butterknife.ButterKnife;
 
-public class ListUserAdapter extends BaseListAdapter<ListUserViewHolder, Mascot> {
+public class ListUserAdapter extends BaseListAdapter<ListUserViewHolder, User> {
 
     public ListUserAdapter(final Activity activity) {
         super(activity);

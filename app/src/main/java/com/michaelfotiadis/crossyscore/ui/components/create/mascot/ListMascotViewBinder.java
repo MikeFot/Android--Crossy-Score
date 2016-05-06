@@ -27,17 +27,24 @@ public class ListMascotViewBinder extends BaseViewHolderBinder<ListMascotViewHol
     @Override
     public void bind(final ListMascotViewHolder holder, final Mascot item) {
         if (item != null) {
-
-            final Drawable drawable = ActivityCompat.getDrawable(getContext(), DEFAULT_IMAGE_PLACEHOLDER);
-            final Random rnd = new Random();
-            final int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-            DrawableCompat.setTint(drawable, color);
-            holder.image.setImageDrawable(drawable);
-
+            holder.image.setImageDrawable(getDrawable(item.getResId()));
             holder.title.setText(item.getName());
             holder.subTitle.setText(item.getRelease());
         }
 
+    }
+
+    private Drawable getDrawable(final Integer resId) {
+        final Drawable drawable;
+        if (resId == null) {
+            drawable = ActivityCompat.getDrawable(getContext(), DEFAULT_IMAGE_PLACEHOLDER);
+            final Random rnd = new Random();
+            final int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+            DrawableCompat.setTint(drawable, color);
+        } else {
+            drawable = ActivityCompat.getDrawable(getContext(), resId);
+        }
+        return drawable;
     }
 
     @Override
