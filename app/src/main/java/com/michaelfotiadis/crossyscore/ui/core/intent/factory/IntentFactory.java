@@ -12,4 +12,6 @@ public interface IntentFactory {
 
     Intent getCreateIntent();
 
+    Intent getAddPlayerIntent();
+
 }

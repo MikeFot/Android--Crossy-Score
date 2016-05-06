@@ -25,6 +25,8 @@
 
         <activity android:name=".ui.components.create.CreateActivity">
         </activity>
+        <activity android:name=".ui.components.addplayer.AddPlayerActivity">
+        </activity>
     </application>
 
 </manifest>

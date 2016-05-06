@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.create;
+package com.michaelfotiadis.crossyscore.ui.components.addplayer;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,12 +7,12 @@ import android.os.Bundle;
 import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.ui.core.common.activity.BaseActivity;
 
-public class CreateActivity extends BaseActivity {
+public class AddPlayerActivity extends BaseActivity {
 
-    private static final String FRAGMENT_TAG = CreateActivity.class.getSimpleName() + "_fragment_tag";
+    private static final String FRAGMENT_TAG = AddPlayerActivity.class.getSimpleName() + "_fragment_tag";
 
     public static Intent getInstance(final Context context) {
-        return new Intent(context, CreateActivity.class);
+        return new Intent(context, AddPlayerActivity.class);
     }
 
     @Override
@@ -20,8 +20,6 @@ public class CreateActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default_fragment_container);
         setTitle("Add a new score");
-        addContentFragmentIfMissing(CreateFragment.newInstance(), FRAGMENT_TAG);
-
+        addContentFragmentIfMissing(AddPlayerFragment.newInstance(), FRAGMENT_TAG);
     }
-
 }

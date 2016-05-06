@@ -18,6 +18,8 @@ public interface IntentDispatcher {
 
     void openCreateActivity(View source);
 
+    void openAddPlayerActivity(View source);
+
     IntentFactory getIntentFactory();
 
 }

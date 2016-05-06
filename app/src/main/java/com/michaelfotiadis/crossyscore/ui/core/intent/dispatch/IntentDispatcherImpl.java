@@ -63,6 +63,16 @@ public class IntentDispatcherImpl implements IntentDispatcher {
     }
 
     @Override
+    public void openAddPlayerActivity(final View source) {
+        AppLog.d("Starting add player activity");
+        final Intent intent = mIntentFactory.getAddPlayerIntent();
+
+        mDispatcher.withView(source)
+                .withAnimation(ActivityAnimation.SLIDE_IN_FROM_LEFT)
+                .dispatch(intent);
+    }
+
+    @Override
     public IntentFactory getIntentFactory() {
         return mIntentFactory;
     }

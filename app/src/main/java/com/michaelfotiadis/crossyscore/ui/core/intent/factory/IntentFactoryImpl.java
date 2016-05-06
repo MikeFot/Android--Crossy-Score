@@ -3,6 +3,7 @@ package com.michaelfotiadis.crossyscore.ui.core.intent.factory;
 import android.content.Context;
 import android.content.Intent;
 
+import com.michaelfotiadis.crossyscore.ui.components.addplayer.AddPlayerActivity;
 import com.michaelfotiadis.crossyscore.ui.components.create.CreateActivity;
 import com.michaelfotiadis.crossyscore.ui.components.main.MainActivity;
 
@@ -28,6 +29,11 @@ public class IntentFactoryImpl implements IntentFactory {
     @Override
     public Intent getCreateIntent() {
         return CreateActivity.getInstance(mContext);
+    }
+
+    @Override
+    public Intent getAddPlayerIntent() {
+        return AddPlayerActivity.getInstance(mContext);
     }
 
 

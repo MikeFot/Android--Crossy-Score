@@ -51,6 +51,7 @@ public abstract class BaseFragment extends Fragment {
     public void onCreate(final Bundle savedInstanceState) {
         CrashlyticsLogKeyController.onCreate(this);
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override
