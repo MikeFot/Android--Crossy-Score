@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import com.michaelfotiadis.crossyscore.common.models.base.AppModel;
 import com.michaelfotiadis.crossyscore.common.models.base.WithLongId;
 import com.michaelfotiadis.crossyscore.ui.core.common.activity.BaseActivity;
-import com.michaelfotiadis.crossyscore.ui.core.common.viewbinder.BaseViewHolderBinder;
+import com.michaelfotiadis.crossyscore.ui.core.common.viewbinder.BaseViewDataBinder;
 import com.michaelfotiadis.crossyscore.ui.core.common.viewholder.BaseViewHolder;
 import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
 import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcherImpl;
@@ -25,7 +25,7 @@ public abstract class BaseListAdapter<VH extends BaseViewHolder, D extends AppMo
     private final Activity mActivity;
     private final List<D> mItems;
     private final LayoutInflater mLayoutInflater;
-    private final BaseViewHolderBinder<VH, D> mBinder;
+    private final BaseViewDataBinder<VH, D> mBinder;
 
 
     public BaseListAdapter(final Activity activity) {
@@ -43,7 +43,7 @@ public abstract class BaseListAdapter<VH extends BaseViewHolder, D extends AppMo
         }
     }
 
-    protected abstract BaseViewHolderBinder<VH, D> createBinder();
+    protected abstract BaseViewDataBinder<VH, D> createBinder();
 
     @Override
     public View getDropDownView(final int position,
@@ -124,7 +124,7 @@ public abstract class BaseListAdapter<VH extends BaseViewHolder, D extends AppMo
         return mLayoutInflater;
     }
 
-    public BaseViewHolderBinder<VH, D> getBinder() {
+    public BaseViewDataBinder<VH, D> getBinder() {
         return mBinder;
     }
 }

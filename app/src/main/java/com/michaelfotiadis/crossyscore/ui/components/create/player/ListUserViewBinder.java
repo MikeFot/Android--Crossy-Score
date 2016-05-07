@@ -8,7 +8,7 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 
 import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.data.models.User;
-import com.michaelfotiadis.crossyscore.ui.core.common.viewbinder.BaseViewHolderBinder;
+import com.michaelfotiadis.crossyscore.ui.core.common.viewbinder.BaseViewDataBinder;
 import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
 
 import java.util.Random;
@@ -16,7 +16,7 @@ import java.util.Random;
 /**
  *
  */
-public class ListUserViewBinder extends BaseViewHolderBinder<ListUserViewHolder, User> {
+public class ListUserViewBinder extends BaseViewDataBinder<ListUserViewHolder, User> {
 
     private static final int DEFAULT_IMAGE_PLACEHOLDER = R.drawable.ic_android_light_blue_300_18dp;
 

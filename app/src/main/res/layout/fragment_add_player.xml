@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_8dp"
         android:hint="@string/hint_player_name"
+        android:inputType="text"
         tools:text="Marcin"/>
 
     <EditText
@@ -20,14 +21,17 @@
         android:layout_below="@id/text_name"
         android:layout_marginBottom="@dimen/margin_8dp"
         android:hint="@string/hint_player_alias"
+        android:inputType="text"
         tools:text="Necromutilator"/>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/button_confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:scaleType="fitCenter"
         android:layout_alignParentBottom="true"
-        android:gravity="center|bottom"
-        android:src="@drawable/ic_add_circle_white_24dp"/>
+        android:layout_centerHorizontal="true"
+        android:tint="@color/color_primary"
+        android:src="@drawable/ic_check_circle_black_36dp"/>
 
 </RelativeLayout>
