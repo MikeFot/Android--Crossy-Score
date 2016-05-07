@@ -39,26 +39,26 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <Spinner
+        android:id="@+id/spinner_avatar"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_below="@id/text_input_layout_alias"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/margin_8dp"
+        android:background="@color/color_window_background_alt"
+        android:padding="@dimen/dimen_padding_small"
+        tools:listitem="@layout/list_item_single_image"/>
+
     <ImageView
         android:id="@+id/button_confirm"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:contentDescription="@string/attr_checkbox"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_check_circle_black_36dp"
-        android:tint="@color/color_primary"
-        android:contentDescription="@string/attr_checkbox"/>
-
-    <Spinner
-        android:id="@+id/spinner_mascot"
-        android:layout_below="@id/text_input_layout_alias"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_8dp"
-        android:background="@color/color_window_background_alt"
-        android:padding="@dimen/dimen_padding_small"
-        android:layout_centerHorizontal="true"
-        tools:listitem="@layout/list_item_single_image"/>
+        android:tint="@color/color_primary"/>
 
 </RelativeLayout>

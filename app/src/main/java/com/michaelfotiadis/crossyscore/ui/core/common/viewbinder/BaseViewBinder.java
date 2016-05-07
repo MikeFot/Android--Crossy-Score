@@ -1,6 +1,6 @@
 package com.michaelfotiadis.crossyscore.ui.core.common.viewbinder;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 
 import com.michaelfotiadis.crossyscore.ui.core.common.viewholder.BaseViewHolder;
@@ -12,16 +12,16 @@ import com.michaelfotiadis.crossyscore.utils.view.ViewUtils;
  */
 public abstract class BaseViewBinder<VH extends BaseViewHolder> {
 
-    private final Context mContext;
+    private final Activity mActivity;
     private final IntentDispatcher mIntentDispatcher;
 
-    protected BaseViewBinder(final Context context, final IntentDispatcher intentDispatcher) {
-        this.mContext = context;
+    protected BaseViewBinder(final Activity activity, final IntentDispatcher intentDispatcher) {
+        this.mActivity = activity;
         this.mIntentDispatcher = intentDispatcher;
     }
 
-    public Context getContext() {
-        return mContext;
+    public Activity getActivity() {
+        return mActivity;
     }
 
     public IntentDispatcher getIntentDispatcher() {

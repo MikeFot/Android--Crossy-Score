@@ -1,6 +1,6 @@
 package com.michaelfotiadis.crossyscore.ui.components.create;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 
 import com.michaelfotiadis.crossyscore.ui.core.common.viewbinder.BaseViewBinder;
@@ -14,9 +14,9 @@ import butterknife.ButterKnife;
  */
 public class CreateFragmentViewBinder extends BaseViewBinder<CreateFragmentViewHolder> {
 
-    protected CreateFragmentViewBinder(final Context context,
+    protected CreateFragmentViewBinder(final Activity activity,
                                        final IntentDispatcher intentDispatcher) {
-        super(context, intentDispatcher);
+        super(activity, intentDispatcher);
     }
 
     @Override

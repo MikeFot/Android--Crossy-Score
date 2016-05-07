@@ -109,6 +109,15 @@ public class UserImpl implements User {
         dest.writeTypedList(mScores);
     }
 
+    @Override
+    public String getId() {
+        if (getPlayer() != null) {
+            return getPlayer().getId();
+        } else {
+            return "";
+        }
+    }
+
     public static final class Builder {
 
         private Player player;

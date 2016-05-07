@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 
 import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
-import com.michaelfotiadis.crossyscore.core.CrossyCore;
 import com.michaelfotiadis.crossyscore.data.error.UiDataLoadError;
 import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderAbstract;
 import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderCallback;
+import com.michaelfotiadis.crossyscore.data.loader.MascotLoader;
 import com.michaelfotiadis.crossyscore.data.loader.UserLoader;
 import com.michaelfotiadis.crossyscore.data.models.User;
 import com.michaelfotiadis.crossyscore.ui.core.common.fragment.BaseFragment;
@@ -39,21 +39,36 @@ public class CreateFragment extends BaseFragment {
         final View view = inflater.inflate(R.layout.fragment_create, container, false);
 
         mController = new CreateFragmentController(getActivity(), view);
-
         return view;
     }
 
     @Override
-    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
 
-        final List<Mascot> mascots = CrossyCore.getDataProvider().getMascots();
+    private void loadData() {
 
-        mController.setMascots(mascots);
+        final DataFeedLoaderAbstract<Mascot> mascotLoader = new MascotLoader(getActivity());
 
-        final DataFeedLoaderAbstract<User> loader = new UserLoader(getActivity());
+        mascotLoader.setCallback(new DataFeedLoaderCallback<Mascot>() {
+            @Override
+            public void onError(final UiDataLoadError error) {
+                getNotificationController().showNotification("Failed to load Mascots");
+            }
 
-        loader.setCallback(new DataFeedLoaderCallback<User>() {
+            @Override
+            public void onSuccess(final List<Mascot> mascots) {
+                mController.setMascots(mascots);
+            }
+        });
+
+        mascotLoader.loadData();
+
+        final DataFeedLoaderAbstract<User> userLoader = new UserLoader(getActivity());
+
+        userLoader.setCallback(new DataFeedLoaderCallback<User>() {
             @Override
             public void onError(final UiDataLoadError error) {
                 getNotificationController().showNotification("Failed to load Users");
@@ -66,8 +81,8 @@ public class CreateFragment extends BaseFragment {
             }
         });
 
-        loader.loadData();
-
+        userLoader.loadData();
     }
+
 
 }

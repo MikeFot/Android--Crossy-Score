@@ -3,6 +3,7 @@ package com.michaelfotiadis.crossyscore.data.models;
 import android.os.Parcel;
 
 import com.michaelfotiadis.crossyscore.common.models.base.AppModel;
+import com.michaelfotiadis.crossyscore.common.models.base.WithStringId;
 import com.michaelfotiadis.crossyscore.common.models.player.Player;
 import com.michaelfotiadis.crossyscore.common.models.score.Score;
 
@@ -13,7 +14,7 @@ import java.util.List;
 /**
  *
  */
-public interface User extends AppModel {
+public interface User extends AppModel, WithStringId {
 
     Creator<User> CREATOR = new Creator<User>() {
         @Override
