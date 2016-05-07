@@ -7,4 +7,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hint_player_name">Name</string>
     <string name="hint_player_alias">Alias</string>
+    <string name="attr_checkbox">CheckBox</string>
 </resources>
