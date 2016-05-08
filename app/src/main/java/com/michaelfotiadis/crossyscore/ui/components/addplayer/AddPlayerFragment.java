@@ -9,15 +9,7 @@ import android.view.ViewGroup;
 import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.common.models.player.Player;
 import com.michaelfotiadis.crossyscore.core.CrossyCore;
-import com.michaelfotiadis.crossyscore.data.error.UiDataLoadError;
-import com.michaelfotiadis.crossyscore.data.loader.AvatarLoader;
-import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderAbstract;
-import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderCallback;
-import com.michaelfotiadis.crossyscore.data.models.ImageContainer;
 import com.michaelfotiadis.crossyscore.ui.core.common.fragment.BaseFragment;
-import com.michaelfotiadis.crossyscore.utils.AppLog;
-
-import java.util.List;
 
 public class AddPlayerFragment extends BaseFragment {
 
@@ -70,23 +62,6 @@ public class AddPlayerFragment extends BaseFragment {
     }
 
     private void loadData() {
-
-        final DataFeedLoaderAbstract<ImageContainer> imageLoader = new AvatarLoader(getActivity());
-
-        imageLoader.setCallback(new DataFeedLoaderCallback<ImageContainer>() {
-            @Override
-            public void onError(final UiDataLoadError error) {
-                getNotificationController().showNotification("Failed to load Avatars");
-            }
-
-            @Override
-            public void onSuccess(final List<ImageContainer> images) {
-                AppLog.d("Loaded " + images.size() + " users");
-                mController.setImages(images);
-            }
-        });
-
-        imageLoader.loadData();
-
+        mController.loadImages();
     }
 }

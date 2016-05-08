@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.main;
+package com.michaelfotiadis.crossyscore.ui.components.mascotpicker;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,13 +7,16 @@ import android.os.Bundle;
 import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.ui.core.common.activity.BaseActivity;
 
-public class MainActivity extends BaseActivity {
+/**
+ *
+ */
+public class MascotPickerActivity extends BaseActivity {
 
     private static final String FRAGMENT_TAG =
-            MainActivity.class.getSimpleName() + "_fragment_tag";
+            MascotPickerActivity.class.getSimpleName() + "_fragment_tag";
 
     public static Intent getInstance(final Context context) {
-        return new Intent(context, MainActivity.class);
+        return new Intent(context, MascotPickerActivity.class);
     }
 
     @Override
@@ -21,7 +24,10 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default_fragment_container);
 
-        addContentFragmentIfMissing(MainFragment.newInstance(), FRAGMENT_TAG);
+        addContentFragmentIfMissing(
+                MascotPickerFragment.newInstance(),
+                FRAGMENT_TAG);
 
     }
+
 }

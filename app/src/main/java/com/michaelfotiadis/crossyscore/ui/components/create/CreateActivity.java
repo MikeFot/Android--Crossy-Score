@@ -24,4 +24,10 @@ public class CreateActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+
+        getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG).onActivityResult(requestCode, resultCode, data);
+
+    }
 }

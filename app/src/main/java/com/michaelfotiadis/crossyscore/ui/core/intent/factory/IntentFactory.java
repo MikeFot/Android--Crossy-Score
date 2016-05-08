@@ -14,4 +14,6 @@ public interface IntentFactory {
 
     Intent getAddPlayerIntent();
 
+    Intent getMascotPickerIntent();
+
 }

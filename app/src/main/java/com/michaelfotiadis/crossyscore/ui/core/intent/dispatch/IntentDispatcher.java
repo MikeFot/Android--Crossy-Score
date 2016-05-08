@@ -20,6 +20,8 @@ public interface IntentDispatcher {
 
     void openAddPlayerActivity(View source);
 
+    void openMascotPickerActivityForResult(View source, int code);
+
     IntentFactory getIntentFactory();
 
 }

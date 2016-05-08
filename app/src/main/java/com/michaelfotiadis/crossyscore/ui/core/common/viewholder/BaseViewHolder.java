@@ -8,14 +8,14 @@ import android.view.View;
  */
 public abstract class BaseViewHolder {
 
-    private final View mView;
+    private final View mRoot;
 
     public BaseViewHolder(final View view) {
-        this.mView = view;
+        this.mRoot = view;
     }
 
-    public View getView() {
-        return mView;
+    public View getRoot() {
+        return mRoot;
     }
 
 }

@@ -73,6 +73,18 @@ public class IntentDispatcherImpl implements IntentDispatcher {
     }
 
     @Override
+    public void openMascotPickerActivityForResult(final View source, final int code) {
+        AppLog.d("Starting pick mascot activity");
+        final Intent intent = mIntentFactory.getMascotPickerIntent();
+
+        mDispatcher.withView(source)
+                .withAnimation(ActivityAnimation.SLIDE_IN_FROM_LEFT)
+                .forResult(code)
+                .dispatch(intent);
+
+    }
+
+    @Override
     public IntentFactory getIntentFactory() {
         return mIntentFactory;
     }

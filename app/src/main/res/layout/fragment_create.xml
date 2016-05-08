@@ -6,33 +6,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/spinner_mascot"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_8dp"
-        android:background="@color/color_window_background_alt"
-        android:padding="@dimen/dimen_padding_small"
-        tools:listitem="@layout/list_item_two_lines_image"/>
+    <include android:id="@+id/layout_mascot"
+             layout="@layout/list_item_two_lines_image"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_margin="@dimen/margin_8dp"
+             android:background="@color/color_window_background_alt"
+             android:padding="@dimen/dimen_padding_small"/>
 
     <Spinner
         android:id="@+id/spinner_player"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/spinner_mascot"
+        android:layout_below="@id/layout_mascot"
         android:layout_margin="@dimen/margin_8dp"
         android:background="@color/color_window_background_alt"
-        android:padding="@dimen/dimen_padding_small"
         tools:listitem="@layout/list_item_two_lines_image"/>
 
     <Button
         android:id="@+id/button_add_player"
-        android:layout_below="@id/spinner_player"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_player"
+        android:layout_margin="@dimen/margin_8dp"
         android:background="@drawable/rounded_button"
-        android:textColor="@color/color_text_color_primary"
         android:text="@string/button_label_add_player"
-        android:layout_margin="@dimen/margin_8dp"/>
+        android:textColor="@color/color_text_color_primary"/>
 
 </RelativeLayout>

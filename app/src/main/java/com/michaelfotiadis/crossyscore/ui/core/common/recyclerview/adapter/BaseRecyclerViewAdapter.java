@@ -26,6 +26,10 @@ public abstract class BaseRecyclerViewAdapter<D, VH extends RecyclerView.ViewHol
         mIntentDispatcher = intentDispatcher;
     }
 
+    public Activity getActivity() {
+        return mActivity;
+    }
+
     public void addItem(final D item, final int position) {
         dataAdditionAttempted = true;
         if (isItemValid(item)) {

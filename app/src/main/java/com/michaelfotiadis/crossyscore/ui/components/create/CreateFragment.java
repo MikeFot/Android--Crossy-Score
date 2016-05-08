@@ -1,5 +1,7 @@
 package com.michaelfotiadis.crossyscore.ui.components.create;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,16 +10,9 @@ import android.view.ViewGroup;
 
 import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
-import com.michaelfotiadis.crossyscore.data.error.UiDataLoadError;
-import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderAbstract;
-import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderCallback;
-import com.michaelfotiadis.crossyscore.data.loader.MascotLoader;
-import com.michaelfotiadis.crossyscore.data.loader.UserLoader;
-import com.michaelfotiadis.crossyscore.data.models.User;
 import com.michaelfotiadis.crossyscore.ui.core.common.fragment.BaseFragment;
+import com.michaelfotiadis.crossyscore.utils.AppConstants;
 import com.michaelfotiadis.crossyscore.utils.AppLog;
-
-import java.util.List;
 
 /**
  *
@@ -49,40 +44,26 @@ public class CreateFragment extends BaseFragment {
     }
 
     private void loadData() {
-
-        final DataFeedLoaderAbstract<Mascot> mascotLoader = new MascotLoader(getActivity());
-
-        mascotLoader.setCallback(new DataFeedLoaderCallback<Mascot>() {
-            @Override
-            public void onError(final UiDataLoadError error) {
-                getNotificationController().showNotification("Failed to load Mascots");
-            }
-
-            @Override
-            public void onSuccess(final List<Mascot> mascots) {
-                mController.setMascots(mascots);
-            }
-        });
-
-        mascotLoader.loadData();
-
-        final DataFeedLoaderAbstract<User> userLoader = new UserLoader(getActivity());
-
-        userLoader.setCallback(new DataFeedLoaderCallback<User>() {
-            @Override
-            public void onError(final UiDataLoadError error) {
-                getNotificationController().showNotification("Failed to load Users");
-            }
-
-            @Override
-            public void onSuccess(final List<User> result) {
-                AppLog.d("Loaded " + result.size() + " users");
-                mController.setUsers(result);
-            }
-        });
-
-        userLoader.loadData();
+        mController.loadData();
     }
 
+    @Override
+    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        switch (requestCode) {
+            case AppConstants.REQUEST_CODE_1:
+                if (resultCode == Activity.RESULT_OK) {
+                    final Mascot mascot = data.getExtras().getParcelable(AppConstants.EXTRA_1);
+                    if (mascot != null) {
+                        AppLog.d("result:" + mascot.getId());
+                        mController.setMascot(mascot);
+                    } else {
+                        AppLog.e("Null mascot result");
+                    }
 
+
+                }
+                break;
+        }
+
+    }
 }

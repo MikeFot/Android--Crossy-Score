@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.michaelfotiadis.crossyscore.ui.components.addplayer.AddPlayerActivity;
 import com.michaelfotiadis.crossyscore.ui.components.create.CreateActivity;
 import com.michaelfotiadis.crossyscore.ui.components.main.MainActivity;
+import com.michaelfotiadis.crossyscore.ui.components.mascotpicker.MascotPickerActivity;
 
 
 /**
@@ -36,5 +37,9 @@ public class IntentFactoryImpl implements IntentFactory {
         return AddPlayerActivity.getInstance(mContext);
     }
 
+    @Override
+    public Intent getMascotPickerIntent() {
+        return MascotPickerActivity.getInstance(mContext);
+    }
 
 }

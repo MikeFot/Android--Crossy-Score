@@ -27,7 +27,7 @@ public class AddPlayerFragmentViewBinder extends BaseViewBinder<AddPlayerFragmen
     @Override
     public void bind(final AddPlayerFragmentViewHolder holder) {
         mHolder = holder;
-        ButterKnife.bind(holder, holder.getView());
+        ButterKnife.bind(holder, holder.getRoot());
     }
 
     @Override
