@@ -45,7 +45,11 @@ public final class ScoreUtils {
 
         @Override
         public int compare(final Score lhs, final Score rhs) {
-            return lhs.getTimeStamp().compareTo(rhs.getTimeStamp());
+            if (lhs.getTimeStamp() < rhs.getTimeStamp()) {
+                return 1;
+            } else {
+                return -1;
+            }
         }
     }
 

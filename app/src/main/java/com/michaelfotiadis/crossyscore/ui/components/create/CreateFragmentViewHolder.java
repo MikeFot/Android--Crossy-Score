@@ -3,6 +3,7 @@ package com.michaelfotiadis.crossyscore.ui.components.create;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.michaelfotiadis.crossyscore.R;
@@ -21,6 +22,10 @@ public class CreateFragmentViewHolder extends BaseViewHolder {
     protected Spinner userSpinner;
     @Bind(R.id.button_add_player)
     protected Button addPlayerButton;
+    @Bind(R.id.edit_text_score)
+    protected EditText scoreText;
+    @Bind(R.id.button_confirm)
+    protected View confirmButton;
 
     public CreateFragmentViewHolder(final View view) {
         super(view);

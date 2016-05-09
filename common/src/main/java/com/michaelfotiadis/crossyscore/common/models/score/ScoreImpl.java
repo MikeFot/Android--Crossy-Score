@@ -118,4 +118,14 @@ public class ScoreImpl implements Score {
             return new ScoreImpl(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "ScoreImpl{" +
+                "timeStamp=" + timeStamp +
+                ", ownerId='" + ownerId + '\'' +
+                ", value=" + value +
+                ", mascot=" + mascot +
+                '}';
+    }
 }

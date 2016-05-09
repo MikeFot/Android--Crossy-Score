@@ -112,4 +112,14 @@ public class MascotImpl implements Mascot {
             return new MascotImpl(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "MascotImpl{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", release='" + release + '\'' +
+                ", resId=" + resId +
+                '}';
+    }
 }
