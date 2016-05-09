@@ -37,7 +37,6 @@ public class UserFactory {
                             .build()
             );
 
-
         }
 
         return users;

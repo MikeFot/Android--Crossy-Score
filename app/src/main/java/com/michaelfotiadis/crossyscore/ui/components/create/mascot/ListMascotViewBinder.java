@@ -20,12 +20,13 @@ public class ListMascotViewBinder extends BaseViewDataBinder<ListMascotViewHolde
 
     private static final int DEFAULT_IMAGE_PLACEHOLDER = R.drawable.ic_android_light_blue_300_18dp;
 
-    protected ListMascotViewBinder(final Context context, final IntentDispatcher intentDispatcher) {
+    public ListMascotViewBinder(final Context context, final IntentDispatcher intentDispatcher) {
         super(context, intentDispatcher);
     }
 
     @Override
     public void bind(final ListMascotViewHolder holder, final Mascot item) {
+
         if (item != null) {
             holder.image.setImageDrawable(getDrawable(item.getResId()));
             holder.title.setText(item.getName());

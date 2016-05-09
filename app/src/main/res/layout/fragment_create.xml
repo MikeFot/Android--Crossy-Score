@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/margin_8dp"
     android:orientation="vertical">
 
     <include android:id="@+id/layout_mascot"
              layout="@layout/list_item_two_lines_image"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
-             android:layout_margin="@dimen/margin_8dp"
              android:background="@color/color_window_background_alt"
              android:padding="@dimen/dimen_padding_small"/>
 
@@ -19,7 +19,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout_mascot"
-        android:layout_margin="@dimen/margin_8dp"
         android:background="@color/color_window_background_alt"
         tools:listitem="@layout/list_item_two_lines_image"/>
 
@@ -28,7 +27,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/spinner_player"
-        android:layout_margin="@dimen/margin_8dp"
         android:background="@drawable/rounded_button"
         android:text="@string/button_label_add_player"
         android:textColor="@color/color_text_color_primary"/>

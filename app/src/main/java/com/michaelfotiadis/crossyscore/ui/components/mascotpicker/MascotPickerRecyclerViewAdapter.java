@@ -13,13 +13,15 @@ import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
 import com.michaelfotiadis.crossyscore.utils.AppConstants;
 import com.michaelfotiadis.crossyscore.utils.AppLog;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  */
 public class MascotPickerRecyclerViewAdapter extends BaseRecyclerViewAdapter<Mascot, MascotPickerRecyclerViewHolder> {
 
     private final MascotPickerRecyclerBinder mBinder;
-    private Integer resultCode;
 
     protected MascotPickerRecyclerViewAdapter(final Activity activity, final IntentDispatcher intentDispatcher) {
         super(activity, intentDispatcher);
@@ -49,19 +51,30 @@ public class MascotPickerRecyclerViewAdapter extends BaseRecyclerViewAdapter<Mas
         holder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                AppLog.d("Sending result: " + mascot.getId());
+                AppLog.d("Sending result: " + mascot.getName());
                 final Bundle data = new Bundle();
                 data.putParcelable(AppConstants.EXTRA_1, mascot);
                 final Intent intent = new Intent();
                 intent.putExtras(data);
                 getActivity().setResult(Activity.RESULT_OK, intent);
+                getActivity().finish();
             }
         });
-
         mBinder.bind(holder, mascot);
+
     }
 
-    public void setResultCode(final int resultCode) {
-        this.resultCode = resultCode;
+    private List<Mascot> filter(List<Mascot> models, String query) {
+        query = query.toLowerCase();
+
+        final List<Mascot> filteredModelList = new ArrayList<>();
+        for (Mascot model : models) {
+            final String text = model.getName().toLowerCase();
+            if (text.contains(query)) {
+                filteredModelList.add(model);
+            }
+        }
+        return filteredModelList;
     }
+
 }

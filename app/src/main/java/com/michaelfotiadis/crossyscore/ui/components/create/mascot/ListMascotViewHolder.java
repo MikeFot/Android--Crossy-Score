@@ -1,5 +1,6 @@
 package com.michaelfotiadis.crossyscore.ui.components.create.mascot;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,4 +29,7 @@ public final class ListMascotViewHolder extends BaseViewHolder {
         return LAYOUT_ID;
     }
 
+    public boolean hasItem() {
+        return !TextUtils.isEmpty(title.getText().toString());
+    }
 }

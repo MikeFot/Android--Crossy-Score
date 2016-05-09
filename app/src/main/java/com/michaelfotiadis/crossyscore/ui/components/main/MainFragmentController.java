@@ -6,8 +6,6 @@ import android.view.View;
 import com.michaelfotiadis.crossyscore.ui.core.common.controller.BaseController;
 import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
 
-import butterknife.ButterKnife;
-
 /**
  *
  */
@@ -19,8 +17,6 @@ import butterknife.ButterKnife;
         super(activity, view);
 
         mHolder = new MainFragmentViewHolder(view);
-        ButterKnife.bind(mHolder, view);
-
 
     }
 

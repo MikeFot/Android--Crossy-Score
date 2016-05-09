@@ -59,8 +59,6 @@ public class CreateFragment extends BaseFragment {
                     } else {
                         AppLog.e("Null mascot result");
                     }
-
-
                 }
                 break;
         }
