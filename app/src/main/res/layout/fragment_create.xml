@@ -1,34 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/margin_8dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
     <include android:id="@+id/layout_mascot"
              layout="@layout/list_item_two_lines_image"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
+             android:layout_marginBottom="@dimen/activity_horizontal_margin"
              android:background="@color/color_window_background_alt"
              android:padding="@dimen/dimen_padding_small"/>
 
-    <Spinner
-        android:id="@+id/spinner_player"
-        android:layout_width="fill_parent"
+    <android.support.v7.widget.CardView
+        android:id="@+id/spinner_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout_mascot"
-        android:background="@color/color_window_background_alt"
-        tools:listitem="@layout/list_item_two_lines_image"/>
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        card_view:elevation="@dimen/fab_elevation">
+
+
+        <Spinner
+            android:id="@+id/spinner_player"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_window_background_alt"
+            tools:listitem="@layout/list_item_two_lines_image"/>
+    </android.support.v7.widget.CardView>
 
     <Button
         android:id="@+id/button_add_player"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/spinner_player"
+        android:layout_below="@id/spinner_container"
+        android:layout_marginBottom="@dimen/dimen_margin_bottom_small"
         android:background="@drawable/rounded_button"
         android:text="@string/button_label_add_player"
         android:textColor="@color/color_text_color_primary"/>
+
+    <EditText
+        android:id="@+id/edit_text_score"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_add_player"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:ems="36"
+        android:gravity="center_horizontal"
+        android:hint="Score"
+        android:inputType="number"
+        android:text="0"
+        android:textSize="36sp"/>
+
+    <ImageView
+        android:id="@+id/button_confirm"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/attr_checkbox"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_check_circle_black_36dp"
+        android:tint="@color/color_primary_dark"/>
 
 </RelativeLayout>
