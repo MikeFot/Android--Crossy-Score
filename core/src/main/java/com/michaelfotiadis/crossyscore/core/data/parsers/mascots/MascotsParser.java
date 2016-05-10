@@ -41,7 +41,7 @@ public class MascotsParser {
                     final String[] row = line.split(",");
 
                     final Mascot mascot = MascotImpl.newBuilder()
-                            .withId(Long.valueOf(row[0]))
+                            .withOrder(Long.valueOf(row[0]))
                             .withName(row[1])
                             .withRelease(row[2])
                             .build();

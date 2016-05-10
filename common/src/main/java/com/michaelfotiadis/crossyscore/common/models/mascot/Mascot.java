@@ -3,12 +3,12 @@ package com.michaelfotiadis.crossyscore.common.models.mascot;
 import android.os.Parcel;
 
 import com.michaelfotiadis.crossyscore.common.models.base.AppModel;
-import com.michaelfotiadis.crossyscore.common.models.base.WithLongId;
+import com.michaelfotiadis.crossyscore.common.models.base.WithStringId;
 
 /**
  *
  */
-public interface Mascot extends AppModel, WithLongId {
+public interface Mascot extends AppModel, WithStringId {
 
     Creator<Mascot> CREATOR = new Creator<Mascot>() {
         @Override
@@ -22,8 +22,7 @@ public interface Mascot extends AppModel, WithLongId {
         }
     };
 
-    @Override
-    Long getId();
+    Long getOrder();
 
     String getName();
 

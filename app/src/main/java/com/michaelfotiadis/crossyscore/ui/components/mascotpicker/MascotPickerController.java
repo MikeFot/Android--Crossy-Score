@@ -33,9 +33,7 @@ public class MascotPickerController extends BaseController {
 
         mHolder = new MascotPickerViewHolder(view);
 
-        final UiStateKeeper uiStateKeeper = new SimpleUiStateKeeper(
-                view,
-                mHolder.recyclerView);
+
 
         mHolder.recyclerView.setHasFixedSize(true);
         mHolder.searchView.clearFocus();
@@ -45,6 +43,10 @@ public class MascotPickerController extends BaseController {
 
         // initialise the adapter
         final MascotPickerRecyclerViewAdapter adapter = new MascotPickerRecyclerViewAdapter(getActivity(), createIntentDispatcher());
+
+        final UiStateKeeper uiStateKeeper = new SimpleUiStateKeeper(
+                view,
+                mHolder.recyclerView);
 
         mRecyclerManager = new RecyclerManager.Builder<>(adapter)
                 .setRecycler(mHolder.recyclerView)
@@ -72,7 +74,7 @@ public class MascotPickerController extends BaseController {
     public void setFilter(final String query) {
 
         AppLog.d("Search parameters: " + query);
-
+        // TODO set filter
 
     }
 

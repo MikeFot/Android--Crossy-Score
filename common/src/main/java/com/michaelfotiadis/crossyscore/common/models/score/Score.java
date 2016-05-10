@@ -4,7 +4,6 @@ import android.os.Parcel;
 
 import com.michaelfotiadis.crossyscore.common.models.base.AppModel;
 import com.michaelfotiadis.crossyscore.common.models.base.WithLongId;
-import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
 
 /**
  *
@@ -29,5 +28,5 @@ public interface Score extends AppModel, WithLongId {
 
     Integer getValue();
 
-    Mascot getMascot();
+    String getMascotId();
 }

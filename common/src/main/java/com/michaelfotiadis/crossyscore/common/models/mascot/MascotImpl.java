@@ -9,8 +9,8 @@ import com.google.gson.annotations.SerializedName;
  */
 public class MascotImpl implements Mascot {
 
-    @SerializedName("id")
-    private final Long id;
+    @SerializedName("order")
+    private final Long order;
     @SerializedName("name")
     private final String name;
     @SerializedName("release")
@@ -19,14 +19,14 @@ public class MascotImpl implements Mascot {
     private final Integer resId;
 
     private MascotImpl(final Builder builder) {
-        id = builder.id;
+        order = builder.order;
         name = builder.name;
         release = builder.release;
         resId = builder.resId;
     }
 
     protected MascotImpl(final Parcel in) {
-        this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.order = (Long) in.readValue(Long.class.getClassLoader());
         this.name = in.readString();
         this.release = in.readString();
         this.resId = (Integer) in.readValue(Integer.class.getClassLoader());
@@ -38,7 +38,7 @@ public class MascotImpl implements Mascot {
 
     public static Builder newBuilder(final MascotImpl copy) {
         final Builder builder = new Builder();
-        builder.id = copy.id;
+        builder.order = copy.order;
         builder.name = copy.name;
         builder.release = copy.release;
         builder.resId = copy.resId;
@@ -46,8 +46,13 @@ public class MascotImpl implements Mascot {
     }
 
     @Override
-    public Long getId() {
-        return id;
+    public String getId() {
+        return name;
+    }
+
+    @Override
+    public Long getOrder() {
+        return order;
     }
 
     @Override
@@ -72,7 +77,7 @@ public class MascotImpl implements Mascot {
 
     @Override
     public void writeToParcel(final Parcel dest, final int flags) {
-        dest.writeValue(this.id);
+        dest.writeValue(this.order);
         dest.writeString(this.name);
         dest.writeString(this.release);
         dest.writeValue(this.resId);
@@ -80,7 +85,7 @@ public class MascotImpl implements Mascot {
 
     public static final class Builder {
 
-        private Long id;
+        private Long order;
         private String name;
         private String release;
         private Integer resId;
@@ -88,8 +93,8 @@ public class MascotImpl implements Mascot {
         private Builder() {
         }
 
-        public Builder withId(final Long val) {
-            id = val;
+        public Builder withOrder(final Long val) {
+            order = val;
             return this;
         }
 
@@ -116,7 +121,7 @@ public class MascotImpl implements Mascot {
     @Override
     public String toString() {
         return "MascotImpl{" +
-                "id=" + id +
+                "order=" + order +
                 ", name='" + name + '\'' +
                 ", release='" + release + '\'' +
                 ", resId=" + resId +

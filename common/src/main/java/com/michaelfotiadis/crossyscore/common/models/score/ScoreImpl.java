@@ -16,21 +16,14 @@ public class ScoreImpl implements Score {
     private final String ownerId;
     @SerializedName("value")
     private final Integer value;
-    @SerializedName("mascot")
-    private final Mascot mascot;
+    @SerializedName("mascotId")
+    private final String mascotId;
 
     private ScoreImpl(final Builder builder) {
         timeStamp = builder.timeStamp;
         ownerId = builder.ownerId;
         value = builder.value;
-        mascot = builder.mascot;
-    }
-
-    protected ScoreImpl(final Parcel in) {
-        this.timeStamp = (Long) in.readValue(Long.class.getClassLoader());
-        this.ownerId = in.readString();
-        this.value = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.mascot = in.readParcelable(Mascot.class.getClassLoader());
+        mascotId = builder.mascotId;
     }
 
     public static Builder newBuilder() {
@@ -42,7 +35,7 @@ public class ScoreImpl implements Score {
         builder.timeStamp = copy.timeStamp;
         builder.ownerId = copy.ownerId;
         builder.value = copy.value;
-        builder.mascot = copy.mascot;
+        builder.mascotId = copy.mascotId;
         return builder;
     }
 
@@ -62,8 +55,8 @@ public class ScoreImpl implements Score {
     }
 
     @Override
-    public Mascot getMascot() {
-        return mascot;
+    public String getMascotId() {
+        return mascotId;
     }
 
     @Override
@@ -71,24 +64,12 @@ public class ScoreImpl implements Score {
         return getTimeStamp();
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(final Parcel dest, final int flags) {
-        dest.writeValue(this.timeStamp);
-        dest.writeString(this.ownerId);
-        dest.writeValue(this.value);
-        dest.writeParcelable(this.mascot, flags);
-    }
-
     public static final class Builder {
 
         private Long timeStamp;
         private String ownerId;
         private Integer value;
+        private String mascotId;
         private Mascot mascot;
 
         private Builder() {
@@ -109,8 +90,8 @@ public class ScoreImpl implements Score {
             return this;
         }
 
-        public Builder withMascot(final Mascot val) {
-            mascot = val;
+        public Builder withMascotId(final String val) {
+            mascotId = val;
             return this;
         }
 
@@ -125,7 +106,28 @@ public class ScoreImpl implements Score {
                 "timeStamp=" + timeStamp +
                 ", ownerId='" + ownerId + '\'' +
                 ", value=" + value +
-                ", mascot=" + mascot +
+                ", mascotId='" + mascotId + '\'' +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(final Parcel dest, final int flags) {
+        dest.writeValue(this.timeStamp);
+        dest.writeString(this.ownerId);
+        dest.writeValue(this.value);
+        dest.writeString(this.mascotId);
+    }
+
+    protected ScoreImpl(final Parcel in) {
+        this.timeStamp = (Long) in.readValue(Long.class.getClassLoader());
+        this.ownerId = in.readString();
+        this.value = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.mascotId = in.readString();
+    }
+
 }

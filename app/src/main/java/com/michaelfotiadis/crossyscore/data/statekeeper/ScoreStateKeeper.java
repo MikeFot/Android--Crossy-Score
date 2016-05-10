@@ -1,6 +1,5 @@
 package com.michaelfotiadis.crossyscore.data.statekeeper;
 
-import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
 import com.michaelfotiadis.crossyscore.common.models.score.Score;
 import com.michaelfotiadis.crossyscore.common.models.score.ScoreImpl;
 import com.michaelfotiadis.crossyscore.data.validation.ValidationResult;
@@ -11,16 +10,16 @@ import com.michaelfotiadis.crossyscore.data.validation.validators.ScoreValidator
  */
 public class ScoreStateKeeper implements StateKeeper<Score> {
 
-    private Mascot mascot;
+    private String mascotId;
     private String ownerId;
     private Integer value;
 
-    public Mascot getMascot() {
-        return mascot;
+    public String getMascotId() {
+        return mascotId;
     }
 
-    public void setMascot(final Mascot mascot) {
-        this.mascot = mascot;
+    public void setMascotId(final String mascotId) {
+        this.mascotId = mascotId;
     }
 
     public String getOwnerId() {
@@ -67,7 +66,7 @@ public class ScoreStateKeeper implements StateKeeper<Score> {
                 .withValue(value)
                 .withTimeStamp(System.currentTimeMillis())
                 .withOwnerId(ownerId)
-                .withMascot(mascot)
+                .withMascotId(mascotId)
                 .build();
     }
 

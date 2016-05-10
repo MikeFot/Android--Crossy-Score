@@ -29,6 +29,7 @@ import com.michaelfotiadis.crossyscore.ui.core.common.notifications.AppToast;
 import com.michaelfotiadis.crossyscore.utils.AppConstants;
 import com.michaelfotiadis.crossyscore.utils.AppLog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,6 +46,8 @@ public class CreateFragmentController extends BaseController {
     private final ListMascotViewBinder mMascotViewBinder;
 
     private final ScoreStateKeeper mKeeper;
+
+    private final List<Mascot> mMascots = new ArrayList<>();
 
     public CreateFragmentController(final Activity activity, final View view) {
         super(activity, view);
@@ -103,9 +106,7 @@ public class CreateFragmentController extends BaseController {
         mHolder.confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-
                 saveScore();
-
             }
         });
 
@@ -165,7 +166,6 @@ public class CreateFragmentController extends BaseController {
     protected void loadData() {
         loadMascots();
         loadUsers();
-
     }
 
     private void loadScores() {
@@ -184,8 +184,8 @@ public class CreateFragmentController extends BaseController {
 
                 if (latestScore != null) {
                     AppLog.d("Latest score is " + latestScore.toString());
-                    if (mKeeper.getMascot() == null) {
-                        setMascot(latestScore.getMascot());
+                    if (TextUtils.isEmpty(mKeeper.getMascotId())) {
+                        setMascot(latestScore.getMascotId());
                     }
                 } else {
                     AppLog.w("Latest score is null");
@@ -205,6 +205,8 @@ public class CreateFragmentController extends BaseController {
 
             @Override
             public void onSuccess(final List<Mascot> mascots) {
+                mMascots.clear();
+                mMascots.addAll(mascots);
                 loadScores();
             }
         });
@@ -232,11 +234,23 @@ public class CreateFragmentController extends BaseController {
         userLoader.loadData();
     }
 
+    public void setMascot(final String mascotId) {
+        if (!TextUtils.isEmpty(mascotId)) {
+            for (final Mascot mascot : mMascots) {
+                if (mascotId.equals(mascot.getId())) {
+                    setMascot(mascot);
+                    break;
+                }
+            }
+        }
+        AppLog.w("Could not find mascot for id " + mascotId);
+    }
+
     public void setMascot(final Mascot mascot) {
         if (mascot != null) {
             AppLog.d("Selecting mascot " + mascot.getName());
             mMascotViewBinder.bind(mMascotViewHolder, mascot);
-            mKeeper.setMascot(mascot);
+            mKeeper.setMascotId(mascot.getId());
         }
     }
 }

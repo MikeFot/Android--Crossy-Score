@@ -12,7 +12,7 @@
     <drawable name="pressed_gray">@color/color_primary</drawable>
     <drawable name="selected_gray">@color/color_accent_alt</drawable>
 
-    <color name="color_window_background">@color/md_grey_100</color>
+    <color name="color_window_background">@color/md_grey_200</color>
     <color name="color_window_background_alt">@color/md_blue_100</color>
 
     <!--reds-->
