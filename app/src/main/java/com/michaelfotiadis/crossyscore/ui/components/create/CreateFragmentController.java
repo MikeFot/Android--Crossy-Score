@@ -2,6 +2,7 @@ package com.michaelfotiadis.crossyscore.ui.components.create;
 
 import android.app.Activity;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
@@ -58,10 +59,15 @@ public class CreateFragmentController extends BaseController {
         mUserAdapter = new ListUserAdapter(activity);
         mHolder.userSpinner.setAdapter(mUserAdapter);
 
-        mHolder.userSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mHolder.userSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+            public void onItemSelected(final AdapterView<?> parent, final View view, final int position, final long id) {
                 mKeeper.setOwnerId(getUser().getId());
+            }
+
+            @Override
+            public void onNothingSelected(final AdapterView<?> parent) {
+
             }
         });
 
@@ -97,6 +103,7 @@ public class CreateFragmentController extends BaseController {
         mHolder.confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+
                 saveScore();
 
             }
@@ -116,7 +123,15 @@ public class CreateFragmentController extends BaseController {
     }
 
     private Integer getScoreValue() {
-        return Integer.valueOf(mHolder.scoreText.getText().toString());
+
+        final String value = mHolder.scoreText.getText().toString();
+
+        if (TextUtils.isEmpty(value)) {
+            return -1;
+        } else {
+            return Integer.valueOf(value);
+        }
+
     }
 
     private User getUser() {
@@ -169,7 +184,9 @@ public class CreateFragmentController extends BaseController {
 
                 if (latestScore != null) {
                     AppLog.d("Latest score is " + latestScore.toString());
-                    setMascot(latestScore.getMascot());
+                    if (mKeeper.getMascot() == null) {
+                        setMascot(latestScore.getMascot());
+                    }
                 } else {
                     AppLog.w("Latest score is null");
                 }
