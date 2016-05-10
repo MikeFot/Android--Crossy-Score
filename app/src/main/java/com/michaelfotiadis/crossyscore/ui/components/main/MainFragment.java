@@ -37,7 +37,11 @@ public class MainFragment extends BaseFragment {
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mController.init(getIntentDispatcher());
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mController.loadData();
     }
 }

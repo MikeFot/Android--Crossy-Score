@@ -142,6 +142,7 @@ public class CreateFragmentController extends BaseController {
 
     private Score buildScore() {
 
+        mKeeper.setOwnerId(getUser().getId());
 
         final ValidationResult validationResult = mKeeper.validate();
 

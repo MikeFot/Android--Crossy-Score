@@ -12,6 +12,7 @@ import com.michaelfotiadis.crossyscore.data.error.UiDataLoadError;
 import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderAbstract;
 import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderCallback;
 import com.michaelfotiadis.crossyscore.data.loader.MascotLoader;
+import com.michaelfotiadis.crossyscore.ui.components.mascotpicker.recycler.MascotPickerRecyclerViewAdapter;
 import com.michaelfotiadis.crossyscore.ui.core.common.controller.BaseController;
 import com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.manager.RecyclerManager;
 import com.michaelfotiadis.crossyscore.ui.core.common.viewmanagement.SimpleUiStateKeeper;

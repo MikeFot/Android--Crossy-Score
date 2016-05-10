@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.mascotpicker;
+package com.michaelfotiadis.crossyscore.ui.components.mascotpicker.recycler;
 
 import android.view.View;
 import android.widget.ImageView;

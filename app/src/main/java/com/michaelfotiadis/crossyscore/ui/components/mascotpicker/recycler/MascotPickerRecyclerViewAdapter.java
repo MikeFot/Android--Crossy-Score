@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.mascotpicker;
+package com.michaelfotiadis.crossyscore.ui.components.mascotpicker.recycler;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,7 +23,7 @@ public class MascotPickerRecyclerViewAdapter extends BaseRecyclerViewAdapter<Mas
 
     private final MascotPickerRecyclerBinder mBinder;
 
-    protected MascotPickerRecyclerViewAdapter(final Activity activity, final IntentDispatcher intentDispatcher) {
+    public MascotPickerRecyclerViewAdapter(final Activity activity, final IntentDispatcher intentDispatcher) {
         super(activity, intentDispatcher);
         mBinder = new MascotPickerRecyclerBinder(activity, intentDispatcher);
     }

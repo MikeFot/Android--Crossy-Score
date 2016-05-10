@@ -3,6 +3,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:background="@color/color_window_background"
                 android:orientation="vertical">
 
     <include
@@ -14,9 +15,10 @@
 
     <LinearLayout
         android:id="@+id/fragment_container"
-        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_margin="@dimen/dimen_padding_small"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        tools:background="@color/color_window_background"
         android:layout_below="@id/toolbar_actionbar"
         android:orientation="vertical">
     </LinearLayout>

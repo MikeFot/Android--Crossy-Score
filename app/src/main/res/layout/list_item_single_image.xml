@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/margin_16dp"
-    card_view:cardElevation="@dimen/fab_elevation">
+    card_view:cardElevation="@dimen/small_elevation">
 
     <ImageView
         android:id="@+id/image"

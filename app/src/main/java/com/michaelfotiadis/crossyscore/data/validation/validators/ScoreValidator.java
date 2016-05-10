@@ -32,13 +32,19 @@ public class ScoreValidator implements Validator<Score> {
     }
 
     private static ValidationResult validateOwnerId(final String id) {
-
         if (TextUtils.isEmpty(id)) {
             return ValidationResultImpl.makeNullContent("Player name cannot be empty");
         } else {
             return ValidationResultImpl.makeValid();
         }
+    }
 
+    private static ValidationResult validateMascotId(final String id) {
+        if (TextUtils.isEmpty(id)) {
+            return ValidationResultImpl.makeNullContent("Mascot id cannot be empty");
+        } else {
+            return ValidationResultImpl.makeValid();
+        }
     }
 
     @Override
@@ -59,7 +65,7 @@ public class ScoreValidator implements Validator<Score> {
                     if (!ownerIdResult.isValid()) {
                         return ownerIdResult;
                     } else {
-                        return new MascotValidator().validate(score.getMascot());
+                        return validateMascotId(score.getMascotId());
                     }
                 }
             }

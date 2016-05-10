@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.main;
+package com.michaelfotiadis.crossyscore.ui.components.mascotpicker.recycler;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -7,7 +7,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 
 import com.michaelfotiadis.crossyscore.R;
-import com.michaelfotiadis.crossyscore.data.models.ScoreUiWrapper;
+import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
 import com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.viewbinder.BaseRecyclerViewBinder;
 import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
 
@@ -16,28 +16,28 @@ import java.util.Random;
 /**
  *
  */
-public class ScoreUiWrapperRecyclerBinder extends BaseRecyclerViewBinder<ScoreUiWrapperRecyclerViewHolder, ScoreUiWrapper> {
+public class MascotPickerRecyclerBinder extends BaseRecyclerViewBinder<MascotPickerRecyclerViewHolder, Mascot> {
 
     private static final int DEFAULT_IMAGE_PLACEHOLDER = R.drawable.ic_android_light_blue_300_18dp;
 
-    protected ScoreUiWrapperRecyclerBinder(final Context context, final IntentDispatcher intentDispatcher) {
+    protected MascotPickerRecyclerBinder(final Context context, final IntentDispatcher intentDispatcher) {
         super(context, intentDispatcher);
     }
 
     @Override
-    public void bind(final ScoreUiWrapperRecyclerViewHolder holder, final ScoreUiWrapper item) {
+    public void bind(final MascotPickerRecyclerViewHolder holder, final Mascot item) {
         if (item != null) {
-          /*  holder.image.setImageDrawable(getDrawable(item.getResId()));
+            holder.image.setImageDrawable(getDrawable(item.getResId()));
             holder.title.setText(item.getName());
-            holder.subTitle.setText(item.getRelease());*/
+            holder.subTitle.setText(item.getRelease());
         }
     }
 
     @Override
-    public void reset(final ScoreUiWrapperRecyclerViewHolder holder) {
-        /*holder.image.setImageDrawable(ActivityCompat.getDrawable(getContext(), DEFAULT_IMAGE_PLACEHOLDER));
+    public void reset(final MascotPickerRecyclerViewHolder holder) {
+        holder.image.setImageDrawable(ActivityCompat.getDrawable(getContext(), DEFAULT_IMAGE_PLACEHOLDER));
         holder.title.setText("");
-        holder.subTitle.setText("");*/
+        holder.subTitle.setText("");
     }
 
     private Drawable getDrawable(final Integer resId) {

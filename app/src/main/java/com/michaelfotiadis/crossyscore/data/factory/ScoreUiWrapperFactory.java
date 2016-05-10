@@ -7,6 +7,8 @@ import com.michaelfotiadis.crossyscore.common.models.player.Player;
 import com.michaelfotiadis.crossyscore.common.models.score.Score;
 import com.michaelfotiadis.crossyscore.common.responses.CrossyCallback;
 import com.michaelfotiadis.crossyscore.common.responses.CrossyDeliverable;
+import com.michaelfotiadis.crossyscore.common.responses.CrossyError;
+import com.michaelfotiadis.crossyscore.common.responses.CrossyErrorKind;
 import com.michaelfotiadis.crossyscore.data.error.UiDataLoadError;
 import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderAbstract;
 import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderCallback;
@@ -37,6 +39,19 @@ public class ScoreUiWrapperFactory {
     }
 
     public void createScoreUiWrappers(final List<Score> scores,
+                                      final List<Player> players,
+                                      final List<Mascot> mascots,
+                                      final CrossyCallback<List<ScoreUiWrapper>> callback) {
+
+        mScores = scores;
+        mPlayers = players;
+        mMascots = mascots;
+        mCallback = callback;
+
+        buildScoreWrappers();
+    }
+
+    public void createScoreUiWrappers(final List<Score> scores,
                                       final CrossyCallback<List<ScoreUiWrapper>> callback) {
 
         mScores = scores;
@@ -51,12 +66,14 @@ public class ScoreUiWrapperFactory {
             @Override
             public void onError(final UiDataLoadError error) {
                 AppLog.e("Failed to load mascots: " + error);
+                mCallback.onFailure(CrossyError.from("Failed to load mascots", CrossyErrorKind.NO_CONTENT_RETURNED));
             }
 
             @Override
             public void onSuccess(final List<Mascot> mascots) {
                 AppLog.d("Loaded " + mascots.size() + " mascots");
                 mMascots = mascots;
+                loadPlayers();
             }
         });
 
@@ -64,12 +81,13 @@ public class ScoreUiWrapperFactory {
     }
 
     private void loadPlayers() {
-        final DataFeedLoaderAbstract<Player> userLoader = new PlayerLoader(mActivity);
+        final DataFeedLoaderAbstract<Player> playerLoader = new PlayerLoader(mActivity);
 
-        userLoader.setCallback(new DataFeedLoaderCallback<Player>() {
+        playerLoader.setCallback(new DataFeedLoaderCallback<Player>() {
             @Override
             public void onError(final UiDataLoadError error) {
                 AppLog.e("Failed to load players: " + error);
+                mCallback.onFailure(CrossyError.from("Failed to load players", CrossyErrorKind.NO_CONTENT_RETURNED));
             }
 
             @Override
@@ -80,7 +98,7 @@ public class ScoreUiWrapperFactory {
             }
         });
 
-        userLoader.loadData();
+        playerLoader.loadData();
     }
 
     private void buildScoreWrappers() {
@@ -103,14 +121,11 @@ public class ScoreUiWrapperFactory {
             }
 
             for (final Player player : mPlayers) {
-
                 if (score.getOwnerId().equals(player.getId())) {
                     builder.withPlayerName(player.getName());
                     builder.withPlayerResId(player.getDrawableResId());
                 }
-
             }
-
             wrappers.add(builder.build());
         }
 

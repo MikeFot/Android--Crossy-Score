@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/layout_mascot"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        card_view:elevation="@dimen/fab_elevation">
+        card_view:elevation="@dimen/small_elevation">
 
         <Spinner
             android:id="@+id/spinner_player"
@@ -53,9 +53,9 @@
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:ems="36"
         android:gravity="center_horizontal"
-        android:hint="Score"
+        android:hint="@string/hint_score"
         android:inputType="number"
-        android:text="0"
+        android:text="@string/default_value_score"
         android:textSize="36sp"/>
 
     <ImageView
