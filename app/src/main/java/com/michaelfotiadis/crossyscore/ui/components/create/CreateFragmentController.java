@@ -1,12 +1,13 @@
 package com.michaelfotiadis.crossyscore.ui.components.create;
 
 import android.app.Activity;
-import android.text.TextUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 
 import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
 import com.michaelfotiadis.crossyscore.common.models.score.Score;
-import com.michaelfotiadis.crossyscore.common.models.score.ScoreImpl;
 import com.michaelfotiadis.crossyscore.core.CrossyCore;
 import com.michaelfotiadis.crossyscore.core.utils.score.ScoreUtils;
 import com.michaelfotiadis.crossyscore.data.error.UiDataLoadError;
@@ -16,9 +17,12 @@ import com.michaelfotiadis.crossyscore.data.loader.MascotLoader;
 import com.michaelfotiadis.crossyscore.data.loader.ScoreLoader;
 import com.michaelfotiadis.crossyscore.data.loader.UserLoader;
 import com.michaelfotiadis.crossyscore.data.models.User;
+import com.michaelfotiadis.crossyscore.data.statekeeper.ScoreStateKeeper;
+import com.michaelfotiadis.crossyscore.data.validation.ValidationResult;
 import com.michaelfotiadis.crossyscore.ui.components.create.mascot.ListMascotViewBinder;
 import com.michaelfotiadis.crossyscore.ui.components.create.mascot.ListMascotViewHolder;
 import com.michaelfotiadis.crossyscore.ui.components.create.player.ListUserAdapter;
+import com.michaelfotiadis.crossyscore.ui.core.common.activity.BaseActivity;
 import com.michaelfotiadis.crossyscore.ui.core.common.controller.BaseController;
 import com.michaelfotiadis.crossyscore.ui.core.common.notifications.AppToast;
 import com.michaelfotiadis.crossyscore.utils.AppConstants;
@@ -39,10 +43,12 @@ public class CreateFragmentController extends BaseController {
     private final ListMascotViewHolder mMascotViewHolder;
     private final ListMascotViewBinder mMascotViewBinder;
 
-    private Mascot mSelectedMascot;
+    private final ScoreStateKeeper mKeeper;
 
     public CreateFragmentController(final Activity activity, final View view) {
         super(activity, view);
+
+        mKeeper = new ScoreStateKeeper();
 
         mHolder = new CreateFragmentViewHolder(view);
         mBinder = new CreateFragmentViewBinder(activity, createIntentDispatcher());
@@ -52,6 +58,12 @@ public class CreateFragmentController extends BaseController {
         mUserAdapter = new ListUserAdapter(activity);
         mHolder.userSpinner.setAdapter(mUserAdapter);
 
+        mHolder.userSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+                mKeeper.setOwnerId(getUser().getId());
+            }
+        });
 
         mMascotViewHolder = new ListMascotViewHolder(mHolder.mascotLayout);
         mMascotViewBinder = new ListMascotViewBinder(getActivity(), createIntentDispatcher());
@@ -64,10 +76,27 @@ public class CreateFragmentController extends BaseController {
             }
         });
 
+
+        mHolder.scoreText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(final CharSequence s, final int start, final int count, final int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(final CharSequence s, final int start, final int before, final int count) {
+                mKeeper.setValue(getScoreValue());
+            }
+
+            @Override
+            public void afterTextChanged(final Editable s) {
+
+            }
+        });
+
         mHolder.confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                AppLog.d("Is score valid: " + validate());
                 saveScore();
 
             }
@@ -76,33 +105,42 @@ public class CreateFragmentController extends BaseController {
     }
 
     private void saveScore() {
-
         final Score score = buildScore();
         if (score != null) {
             AppLog.d("Created score " + score);
             CrossyCore.getDataProvider().getScores().upsert(score);
             getActivity().finish();
         } else {
-            AppToast.show(getActivity(), "Something is missing");
+            AppLog.e("Score was null");
         }
-
     }
 
+    private Integer getScoreValue() {
+        return Integer.valueOf(mHolder.scoreText.getText().toString());
+    }
+
+    private User getUser() {
+        return (User) mHolder.userSpinner.getSelectedItem();
+    }
+
+
     private Score buildScore() {
-        if (validate()) {
 
-            final User user = (User) mHolder.userSpinner.getSelectedItem();
 
-            return ScoreImpl.newBuilder()
-                    .withMascot(mSelectedMascot)
-                    .withOwnerId(user.getId())
-                    .withTimeStamp(System.currentTimeMillis())
-                    .withValue(Integer.valueOf(mHolder.scoreText.getText().toString()))
-                    .build();
+        final ValidationResult validationResult = mKeeper.validate();
 
+        if (mKeeper.isReady()) {
+            return mKeeper.build();
         } else {
+            AppLog.w("Invalid score: " + validationResult.getMessage());
+            if (getActivity() instanceof BaseActivity) {
+                ((BaseActivity) getActivity()).getNotificationController().showNotification(validationResult.getMessage());
+            } else {
+                AppToast.show(getActivity(), validationResult.getMessage());
+            }
             return null;
         }
+
     }
 
     public void setUsers(final List<User> items) {
@@ -138,20 +176,6 @@ public class CreateFragmentController extends BaseController {
             }
         });
         scoreLoader.loadData();
-    }
-
-    private boolean validate() {
-
-        if (mSelectedMascot == null) {
-            return false;
-        } else if (mHolder.userSpinner.getSelectedItem() == null) {
-            return false;
-        } else if (TextUtils.isEmpty(mHolder.scoreText.toString())) {
-            return false;
-        } else {
-            return true;
-        }
-
     }
 
     private void loadMascots() {
@@ -195,7 +219,7 @@ public class CreateFragmentController extends BaseController {
         if (mascot != null) {
             AppLog.d("Selecting mascot " + mascot.getName());
             mMascotViewBinder.bind(mMascotViewHolder, mascot);
-            mSelectedMascot = mascot;
+            mKeeper.setMascot(mascot);
         }
     }
 }

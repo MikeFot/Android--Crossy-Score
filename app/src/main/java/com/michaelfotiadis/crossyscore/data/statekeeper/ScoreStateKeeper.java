@@ -75,7 +75,7 @@ public class ScoreStateKeeper implements StateKeeper<Score> {
         return validate().isValid();
     }
 
-    private ValidationResult validate() {
+    public ValidationResult validate() {
         return new ScoreValidator().validate(buildInternal());
     }
 }

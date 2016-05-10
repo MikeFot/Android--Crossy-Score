@@ -78,5 +78,11 @@ public final class ValidationResultImpl implements ValidationResult {
         }
     }
 
-
+    @Override
+    public String toString() {
+        return "ValidationResultImpl{" +
+                "code=" + code +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }
