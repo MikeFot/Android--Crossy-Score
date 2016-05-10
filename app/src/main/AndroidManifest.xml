@@ -28,7 +28,8 @@
         <activity android:name=".ui.components.addplayer.AddPlayerActivity">
         </activity>
         <activity android:name=".ui.components.mascotpicker.MascotPickerActivity">
-
+        </activity>
+        <activity android:name=".ui.components.scoredetails.ScoreDetailsActivity">
         </activity>
     </application>
 
