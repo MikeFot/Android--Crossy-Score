@@ -2,7 +2,7 @@ package com.michaelfotiadis.crossyscore.core.data.parsers.gson;
 
 import com.google.gson.stream.JsonReader;
 import com.michaelfotiadis.crossyscore.core.utils.SdkConstants;
-import com.michaelfotiadis.crossyscore.core.utils.StreamUtils;
+import com.michaelfotiadis.crossyscore.core.utils.stream.StreamUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

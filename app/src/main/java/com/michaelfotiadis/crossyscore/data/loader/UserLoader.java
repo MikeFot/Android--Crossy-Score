@@ -6,7 +6,7 @@ import com.michaelfotiadis.crossyscore.common.models.player.Player;
 import com.michaelfotiadis.crossyscore.common.models.score.Score;
 import com.michaelfotiadis.crossyscore.core.CrossyCore;
 import com.michaelfotiadis.crossyscore.data.error.UiDataLoadError;
-import com.michaelfotiadis.crossyscore.data.helper.UserFactory;
+import com.michaelfotiadis.crossyscore.data.factory.UserFactory;
 import com.michaelfotiadis.crossyscore.data.models.User;
 import com.michaelfotiadis.crossyscore.utils.AppLog;
 

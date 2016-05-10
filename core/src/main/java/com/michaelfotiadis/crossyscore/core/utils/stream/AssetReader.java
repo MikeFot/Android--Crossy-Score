@@ -1,9 +1,11 @@
-package com.michaelfotiadis.crossyscore.core.utils;
+package com.michaelfotiadis.crossyscore.core.utils.stream;
 
 import android.content.Context;
 
 import com.google.gson.Gson;
 import com.michaelfotiadis.crossyscore.core.data.parsers.gson.CoreGson;
+import com.michaelfotiadis.crossyscore.core.utils.SdkConstants;
+import com.michaelfotiadis.crossyscore.core.utils.SdkLog;
 
 import java.io.BufferedReader;
 import java.io.IOException;

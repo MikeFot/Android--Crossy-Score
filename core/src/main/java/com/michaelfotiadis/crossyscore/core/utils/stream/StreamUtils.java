@@ -1,4 +1,7 @@
-package com.michaelfotiadis.crossyscore.core.utils;
+package com.michaelfotiadis.crossyscore.core.utils.stream;
+
+import com.michaelfotiadis.crossyscore.core.utils.SdkConstants;
+import com.michaelfotiadis.crossyscore.core.utils.SdkLog;
 
 import java.io.BufferedReader;
 import java.io.Closeable;

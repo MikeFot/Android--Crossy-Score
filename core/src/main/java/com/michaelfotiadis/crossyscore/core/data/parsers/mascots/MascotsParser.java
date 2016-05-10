@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
 import com.michaelfotiadis.crossyscore.common.models.mascot.MascotImpl;
-import com.michaelfotiadis.crossyscore.core.utils.AssetReader;
 import com.michaelfotiadis.crossyscore.core.utils.SdkConstants;
+import com.michaelfotiadis.crossyscore.core.utils.stream.AssetReader;
 
 import java.io.BufferedReader;
 import java.io.IOException;

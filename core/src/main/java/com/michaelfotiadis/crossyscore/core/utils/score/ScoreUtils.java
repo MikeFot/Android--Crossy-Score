@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.data.helper;
+package com.michaelfotiadis.crossyscore.core.utils.score;
 
 import com.michaelfotiadis.crossyscore.common.models.score.Score;
 
