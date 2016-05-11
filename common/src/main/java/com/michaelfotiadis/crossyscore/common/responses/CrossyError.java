@@ -1,7 +1,7 @@
 package com.michaelfotiadis.crossyscore.common.responses;
 
 /**
- * Custom Cinime Error object
+ * Custom Crossy Error object
  */
 public final class CrossyError implements CrossyTimedElement {
 

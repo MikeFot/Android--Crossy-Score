@@ -11,7 +11,7 @@ import com.michaelfotiadis.crossyscore.core.data.database.contracts.ScoresContra
 
 /*protected*/ class CoreDbHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "cinime_v2.db";
+    private static final String DATABASE_NAME = "crossy_v2.db";
     // If you change the database schema, you must increment the database version.
     private static final int DATABASE_VERSION = 1;
 
