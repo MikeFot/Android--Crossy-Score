@@ -5,28 +5,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
-    android:background="?attr/colorPrimary">
+    android:background="?attr/colorPrimary"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <TextView
         android:id="@+id/toolbar_title_view"
+        style="@style/NavTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        style="@style/NavTitle"
         android:singleLine="true"
         android:visibility="gone"
         tools:text="Toolbar Title"/>
 
-    <android.support.design.widget.TextInputLayout
+    <EditText
+        android:id="@+id/search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <EditText
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            tools:hint="@string/hint_search_for_a_mascot"/>
-    </android.support.design.widget.TextInputLayout>
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        tools:hint="Search..."/>
 
 
 </android.support.v7.widget.Toolbar>

@@ -27,7 +27,7 @@ public class MascotPickerFragment extends BaseFragment implements Searchable {
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
 
-        final View view = inflater.inflate(R.layout.fragment_searchable_recycler, container, false);
+        final View view = inflater.inflate(R.layout.fragment_default_recycler, container, false);
 
         mController = new MascotPickerController(getActivity(), view);
 

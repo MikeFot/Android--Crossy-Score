@@ -2,10 +2,7 @@ package com.michaelfotiadis.crossyscore.ui.components.mascotpicker;
 
 import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.TextView;
 
 import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
 import com.michaelfotiadis.crossyscore.data.error.UiDataLoadError;
@@ -39,7 +36,6 @@ public class MascotPickerController extends BaseController {
         mBinder.bind(mHolder);
 
         mHolder.recyclerView.setHasFixedSize(true);
-        mHolder.searchView.clearFocus();
 
         // call the utilities to get the appropriate layout manager
         mHolder.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -58,18 +54,6 @@ public class MascotPickerController extends BaseController {
                 .setStateKeeper(uiStateKeeper)
                 .setEmptyMessage(null)
                 .build();
-
-        mHolder.searchView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(final TextView v, final int actionId, final KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    setFilter(v.getText().toString());
-                    return true;
-                }
-                return false;
-            }
-        });
 
     }
 

@@ -35,6 +35,7 @@ public class MascotPickerActivity extends BaseActivity {
                 FRAGMENT_TAG);
 
         mSearchView = (EditText) getCustomActionBar().findViewById(R.id.search);
+        mSearchView.clearFocus();
         mSearchView.setHint(getString(R.string.hint_search_for_a_mascot));
         new EditTextFilterWrapper(mSearchView, new EditTextFilterWrapper.OnTextChangedListener() {
             @Override
