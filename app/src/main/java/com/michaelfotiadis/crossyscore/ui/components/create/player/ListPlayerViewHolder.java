@@ -10,17 +10,19 @@ import com.michaelfotiadis.crossyscore.ui.core.common.viewholder.BaseViewHolder;
 import butterknife.Bind;
 
 
-public final class ListUserViewHolder extends BaseViewHolder {
+public final class ListPlayerViewHolder extends BaseViewHolder {
 
-    private static final int LAYOUT_ID = R.layout.list_item_two_lines_image;
+    private static final int LAYOUT_ID = R.layout.list_item_three_lines_image;
     @Bind(R.id.line1)
     protected TextView title;
     @Bind(R.id.line2)
     protected TextView subTitle;
+    @Bind(R.id.line3)
+    protected TextView joinedText;
     @Bind(R.id.image)
     protected ImageView image;
 
-    public ListUserViewHolder(final View view) {
+    public ListPlayerViewHolder(final View view) {
         super(view);
     }
 

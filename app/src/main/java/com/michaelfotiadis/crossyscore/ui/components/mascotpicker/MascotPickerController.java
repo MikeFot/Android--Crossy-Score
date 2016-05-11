@@ -34,8 +34,6 @@ public class MascotPickerController extends BaseController {
 
         mHolder = new MascotPickerViewHolder(view);
 
-
-
         mHolder.recyclerView.setHasFixedSize(true);
         mHolder.searchView.clearFocus();
 
@@ -43,7 +41,9 @@ public class MascotPickerController extends BaseController {
         mHolder.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         // initialise the adapter
-        final MascotPickerRecyclerViewAdapter adapter = new MascotPickerRecyclerViewAdapter(getActivity(), createIntentDispatcher());
+        final MascotPickerRecyclerViewAdapter adapter = new MascotPickerRecyclerViewAdapter(
+                getActivity(),
+                createIntentDispatcher());
 
         final UiStateKeeper uiStateKeeper = new SimpleUiStateKeeper(
                 view,

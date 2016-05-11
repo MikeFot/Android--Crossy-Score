@@ -22,8 +22,4 @@ public class MainFragmentViewHolder extends BaseViewHolder {
     public MainFragmentViewHolder(final View view) {
         super(view);
     }
-
-    public FloatingActionButton getFab() {
-        return fab;
-    }
 }

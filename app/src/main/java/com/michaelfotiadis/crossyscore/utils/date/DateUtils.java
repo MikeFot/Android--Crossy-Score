@@ -10,7 +10,7 @@ import java.util.Calendar;
  */
 public class DateUtils {
 
-    public static String getTimeAgoForScore(final Long time) {
+    public static String getTimeAgoForLong(final Long time) {
         if (time == null) {
             return "Unknown";
         }

@@ -7,31 +7,36 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 
 import com.michaelfotiadis.crossyscore.R;
-import com.michaelfotiadis.crossyscore.data.models.User;
+import com.michaelfotiadis.crossyscore.common.models.player.Player;
 import com.michaelfotiadis.crossyscore.ui.core.common.viewbinder.BaseViewDataBinder;
 import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
+import com.michaelfotiadis.crossyscore.utils.date.DateUtils;
 
 import java.util.Random;
 
 /**
  *
  */
-public class ListUserViewBinder extends BaseViewDataBinder<ListUserViewHolder, User> {
+public class ListPlayerViewBinder extends BaseViewDataBinder<ListPlayerViewHolder, Player> {
 
     private static final int DEFAULT_IMAGE_PLACEHOLDER = R.drawable.ic_android_light_blue_300_18dp;
 
-    protected ListUserViewBinder(final Context context, final IntentDispatcher intentDispatcher) {
+    protected ListPlayerViewBinder(final Context context, final IntentDispatcher intentDispatcher) {
         super(context, intentDispatcher);
     }
 
-    @Override
-    public void bind(final ListUserViewHolder holder, final User item) {
-        if (item != null) {
-            holder.image.setImageDrawable(getDrawable(item.getPlayer().getDrawableResId()));
-            holder.title.setText(item.getPlayer().getName());
-            holder.subTitle.setText(item.getPlayer().getAlias());
-        }
+    private static String calculateJoinedText(final Long registeredOn) {
+        return String.format("Joined %s", DateUtils.getTimeAgoForLong(registeredOn));
+    }
 
+    @Override
+    public void bind(final ListPlayerViewHolder holder, final Player item) {
+        if (item != null) {
+            holder.image.setImageDrawable(getDrawable(item.getDrawableResId()));
+            holder.title.setText(item.getName());
+            holder.subTitle.setText(item.getAlias());
+            holder.joinedText.setText(calculateJoinedText(item.getRegisteredOn()));
+        }
     }
 
     private Drawable getDrawable(final Integer resId) {
@@ -48,7 +53,7 @@ public class ListUserViewBinder extends BaseViewDataBinder<ListUserViewHolder, U
     }
 
     @Override
-    public void reset(final ListUserViewHolder holder) {
+    public void reset(final ListPlayerViewHolder holder) {
         holder.image.setImageDrawable(ActivityCompat.getDrawable(getContext(), DEFAULT_IMAGE_PLACEHOLDER));
         holder.title.setText("");
         holder.subTitle.setText("");

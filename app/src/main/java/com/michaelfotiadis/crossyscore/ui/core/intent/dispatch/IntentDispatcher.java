@@ -18,7 +18,7 @@ public interface IntentDispatcher {
 
     void openCreateActivity(View source);
 
-    void openAddPlayerActivity(View source);
+    void openAddPlayerActivityForResult(View source, int code);
 
     void openMascotPickerActivityForResult(View source, int code);
 

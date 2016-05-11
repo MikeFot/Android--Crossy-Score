@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
+import com.michaelfotiadis.crossyscore.common.models.player.Player;
 import com.michaelfotiadis.crossyscore.common.models.score.Score;
 import com.michaelfotiadis.crossyscore.core.CrossyCore;
 import com.michaelfotiadis.crossyscore.core.utils.score.ScoreUtils;
@@ -15,14 +16,13 @@ import com.michaelfotiadis.crossyscore.data.error.UiDataLoadError;
 import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderAbstract;
 import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderCallback;
 import com.michaelfotiadis.crossyscore.data.loader.MascotLoader;
+import com.michaelfotiadis.crossyscore.data.loader.PlayerLoader;
 import com.michaelfotiadis.crossyscore.data.loader.ScoreLoader;
-import com.michaelfotiadis.crossyscore.data.loader.UserLoader;
-import com.michaelfotiadis.crossyscore.data.models.User;
 import com.michaelfotiadis.crossyscore.data.statekeeper.ScoreStateKeeper;
 import com.michaelfotiadis.crossyscore.data.validation.ValidationResult;
 import com.michaelfotiadis.crossyscore.ui.components.create.mascot.ListMascotViewBinder;
 import com.michaelfotiadis.crossyscore.ui.components.create.mascot.ListMascotViewHolder;
-import com.michaelfotiadis.crossyscore.ui.components.create.player.ListUserAdapter;
+import com.michaelfotiadis.crossyscore.ui.components.create.player.ListPlayerAdapter;
 import com.michaelfotiadis.crossyscore.ui.core.common.activity.BaseActivity;
 import com.michaelfotiadis.crossyscore.ui.core.common.controller.BaseController;
 import com.michaelfotiadis.crossyscore.ui.core.common.notifications.AppToast;
@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class CreateFragmentController extends BaseController {
 
-    private final ListUserAdapter mUserAdapter;
+    private final ListPlayerAdapter mPlayerAdapter;
 
     private final CreateFragmentViewHolder mHolder;
     private final CreateFragmentViewBinder mBinder;
@@ -59,13 +59,13 @@ public class CreateFragmentController extends BaseController {
 
         mBinder.bind(mHolder);
 
-        mUserAdapter = new ListUserAdapter(activity);
-        mHolder.userSpinner.setAdapter(mUserAdapter);
+        mPlayerAdapter = new ListPlayerAdapter(activity);
+        mHolder.userSpinner.setAdapter(mPlayerAdapter);
 
         mHolder.userSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(final AdapterView<?> parent, final View view, final int position, final long id) {
-                mKeeper.setOwnerId(getUser().getId());
+                mKeeper.setOwnerId(getPlayer().getId());
             }
 
             @Override
@@ -110,6 +110,19 @@ public class CreateFragmentController extends BaseController {
             }
         });
 
+        mHolder.addPlayerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                AppLog.d("Adding new player");
+                createIntentDispatcher().openAddPlayerActivityForResult(v, AppConstants.REQUEST_CODE_2);
+            }
+        });
+
+    }
+
+    protected void setPlayer(final Player player) {
+
+
     }
 
     private void saveScore() {
@@ -135,14 +148,16 @@ public class CreateFragmentController extends BaseController {
 
     }
 
-    private User getUser() {
-        return (User) mHolder.userSpinner.getSelectedItem();
+    private Player getPlayer() {
+        return (Player) mHolder.userSpinner.getSelectedItem();
     }
 
 
     private Score buildScore() {
 
-        mKeeper.setOwnerId(getUser().getId());
+        if (getPlayer() != null) {
+            mKeeper.setOwnerId(getPlayer().getId());
+        }
 
         final ValidationResult validationResult = mKeeper.validate();
 
@@ -160,13 +175,13 @@ public class CreateFragmentController extends BaseController {
 
     }
 
-    public void setUsers(final List<User> items) {
-        mUserAdapter.setItems(items);
+    public void setPlayers(final List<Player> items) {
+        mPlayerAdapter.setItems(items);
     }
 
     protected void loadData() {
         loadMascots();
-        loadUsers();
+        loadPlayers();
     }
 
     private void loadScores() {
@@ -215,24 +230,23 @@ public class CreateFragmentController extends BaseController {
         mascotLoader.loadData();
     }
 
-    private void loadUsers() {
-        final DataFeedLoaderAbstract<User> userLoader = new UserLoader(getActivity());
+    private void loadPlayers() {
+        final DataFeedLoaderAbstract<Player> playerLoader = new PlayerLoader(getActivity());
 
-        userLoader.setCallback(new DataFeedLoaderCallback<User>() {
+        playerLoader.setCallback(new DataFeedLoaderCallback<Player>() {
             @Override
             public void onError(final UiDataLoadError error) {
-                AppLog.e("Failed to load users: " + error);
-                showMessage("Failed to load Users");
+                AppLog.e("Failed to load players: " + error);
+                showMessage("Failed to load players");
             }
 
             @Override
-            public void onSuccess(final List<User> result) {
+            public void onSuccess(final List<Player> result) {
                 AppLog.d("Loaded " + result.size() + " users");
-                setUsers(result);
+                setPlayers(result);
             }
         });
-
-        userLoader.loadData();
+        playerLoader.loadData();
     }
 
     public void setMascot(final String mascotId) {
@@ -252,6 +266,13 @@ public class CreateFragmentController extends BaseController {
             AppLog.d("Selecting mascot " + mascot.getName());
             mMascotViewBinder.bind(mMascotViewHolder, mascot);
             mKeeper.setMascotId(mascot.getId());
+        }
+    }
+
+    public void addPlayer(final Player player) {
+        if (player != null) {
+            mPlayerAdapter.addItem(player);
+            mHolder.userSpinner.setSelection(0);
         }
     }
 }

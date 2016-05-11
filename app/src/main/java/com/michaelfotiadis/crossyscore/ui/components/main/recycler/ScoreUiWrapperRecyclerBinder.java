@@ -33,7 +33,7 @@ public class ScoreUiWrapperRecyclerBinder extends BaseRecyclerViewBinder<ScoreUi
             holder.imageMascot.setImageDrawable(getDrawable(item.getMascotResId()));
             holder.playerName.setText(item.getPlayerName());
             holder.mascotName.setText(item.getMascotName());
-            holder.timeStamp.setText(DateUtils.getTimeAgoForScore(item.getTimeStamp()));
+            holder.timeStamp.setText(DateUtils.getTimeAgoForLong(item.getTimeStamp()));
         }
     }
 

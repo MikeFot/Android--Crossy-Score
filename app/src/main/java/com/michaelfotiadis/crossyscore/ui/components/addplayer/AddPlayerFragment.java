@@ -1,6 +1,8 @@
 package com.michaelfotiadis.crossyscore.ui.components.addplayer;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,8 @@ import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.common.models.player.Player;
 import com.michaelfotiadis.crossyscore.core.CrossyCore;
 import com.michaelfotiadis.crossyscore.ui.core.common.fragment.BaseFragment;
+import com.michaelfotiadis.crossyscore.utils.AppConstants;
+import com.michaelfotiadis.crossyscore.utils.AppLog;
 
 public class AddPlayerFragment extends BaseFragment {
 
@@ -45,8 +49,14 @@ public class AddPlayerFragment extends BaseFragment {
                 if (player != null) {
 
                     CrossyCore.getDataProvider().getPlayers().upsert(player);
-                    getActivity().finish();
 
+                    AppLog.d("Sending result: " + player.getName());
+                    final Bundle data = new Bundle();
+                    data.putParcelable(AppConstants.EXTRA_1, player);
+                    final Intent intent = new Intent();
+                    intent.putExtras(data);
+                    getActivity().setResult(Activity.RESULT_OK, intent);
+                    getActivity().finish();
                 }
 
             }

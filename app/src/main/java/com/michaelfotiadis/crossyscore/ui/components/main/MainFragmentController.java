@@ -3,7 +3,12 @@ package com.michaelfotiadis.crossyscore.ui.components.main;
 import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 
+import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.common.models.score.Score;
 import com.michaelfotiadis.crossyscore.common.responses.CrossyCallback;
 import com.michaelfotiadis.crossyscore.common.responses.CrossyDeliverable;
@@ -17,6 +22,7 @@ import com.michaelfotiadis.crossyscore.data.models.ScoreUiWrapper;
 import com.michaelfotiadis.crossyscore.ui.components.main.recycler.ScoreUiWrapperRecyclerViewAdapter;
 import com.michaelfotiadis.crossyscore.ui.core.common.controller.BaseController;
 import com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.manager.RecyclerManager;
+import com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.scroll.BaseRecyclerScroll;
 import com.michaelfotiadis.crossyscore.ui.core.common.viewmanagement.SimpleUiStateKeeper;
 import com.michaelfotiadis.crossyscore.ui.core.common.viewmanagement.UiStateKeeper;
 import com.michaelfotiadis.crossyscore.utils.AppLog;
@@ -39,13 +45,36 @@ import java.util.List;
 
         mHolder = new MainFragmentViewHolder(view);
 
-        mHolder.getFab().setOnClickListener(new View.OnClickListener() {
+        initFab();
+
+        mRecyclerManager = initRecyclerManager(view);
+
+    }
+
+    private void initFab() {
+        final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.simple_grow);
+        mHolder.fab.setAnimation(animation);
+        mHolder.fab.animate();
+        mHolder.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                createIntentDispatcher().openCreateActivity(mHolder.getFab());
+                createIntentDispatcher().openCreateActivity(mHolder.fab);
             }
         });
+    }
 
+    private RecyclerManager<ScoreUiWrapper> initRecyclerManager(final View view) {
+        mHolder.recyclerView.addOnScrollListener(new BaseRecyclerScroll() {
+            @Override
+            public void show() {
+                mHolder.fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
+            }
+
+            @Override
+            public void hide() {
+                mHolder.fab.animate().translationY(mHolder.fab.getHeight() + mHolder.fab.getHeight() / 2).setInterpolator(new AccelerateInterpolator(2)).start();
+            }
+        });
 
         // call the utilities to get the appropriate layout manager
         mHolder.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -57,12 +86,11 @@ import java.util.List;
                 view,
                 mHolder.recyclerView);
 
-        mRecyclerManager = new RecyclerManager.Builder<>(adapter)
+        return new RecyclerManager.Builder<>(adapter)
                 .setRecycler(mHolder.recyclerView)
                 .setStateKeeper(uiStateKeeper)
                 .setEmptyMessage(null)
                 .build();
-
     }
 
     public void loadData() {
@@ -99,6 +127,5 @@ import java.util.List;
         });
         scoreLoader.loadData();
     }
-
 
 }

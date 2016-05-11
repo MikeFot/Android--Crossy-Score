@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
+import com.michaelfotiadis.crossyscore.common.models.player.Player;
 import com.michaelfotiadis.crossyscore.ui.core.common.fragment.BaseFragment;
 import com.michaelfotiadis.crossyscore.utils.AppConstants;
 import com.michaelfotiadis.crossyscore.utils.AppLog;
@@ -54,13 +55,26 @@ public class CreateFragment extends BaseFragment {
                 if (resultCode == Activity.RESULT_OK) {
                     final Mascot mascot = data.getExtras().getParcelable(AppConstants.EXTRA_1);
                     if (mascot != null) {
-                        AppLog.d("result:" + mascot.getId());
+                        AppLog.d("result: " + mascot.getId());
                         mController.setMascot(mascot);
                     } else {
                         AppLog.e("Null mascot result");
                     }
                 }
                 break;
+            case AppConstants.REQUEST_CODE_2:
+                if (resultCode == Activity.RESULT_OK) {
+                    final Player player = data.getExtras().getParcelable(AppConstants.EXTRA_1);
+                    if (player != null) {
+                        AppLog.d("result:" + player.getName());
+                        mController.addPlayer(player);
+                    }
+                }
+
+                break;
+
+            default:
+                AppLog.d("Unknown request code: " + requestCode);
         }
 
     }
