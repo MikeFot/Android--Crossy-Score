@@ -53,12 +53,13 @@ public class IntentDispatcherImpl implements IntentDispatcher {
     }
 
     @Override
-    public void openCreateActivity(final View source) {
+    public void openCreateActivity(final View source, final int code) {
         AppLog.d("Starting create activity");
         final Intent intent = mIntentFactory.getCreateIntent();
 
         mDispatcher.withView(source)
                 .withAnimation(ActivityAnimation.SCALE_UP_FROM_VIEW)
+                .forResult(code)
                 .dispatch(intent);
     }
 

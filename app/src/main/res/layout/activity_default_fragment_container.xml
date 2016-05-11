@@ -4,23 +4,27 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:background="@color/color_window_background"
+                android:clipToPadding="false"
+                android:fitsSystemWindows="true"
                 android:orientation="vertical">
 
-    <include
-        android:id="@+id/toolbar_actionbar"
-        layout="@layout/toolbar_crossy"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"/>
+        android:layout_height="wrap_content">
+        <include
+            android:id="@+id/toolbar_actionbar"
+            layout="@layout/toolbar_crossy"/>
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:id="@+id/fragment_container"
-        android:padding="@dimen/dimen_padding_small"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        tools:background="@color/color_window_background"
-        android:layout_below="@id/toolbar_actionbar"
-        android:orientation="vertical">
+        android:layout_below="@id/app_bar_layout"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_padding_small"
+        tools:background="@color/color_window_background">
     </LinearLayout>
 
     <android.support.design.widget.CoordinatorLayout

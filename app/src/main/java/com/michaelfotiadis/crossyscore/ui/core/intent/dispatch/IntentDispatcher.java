@@ -16,7 +16,7 @@ public interface IntentDispatcher {
 
     void openHomeActivity();
 
-    void openCreateActivity(View source);
+    void openCreateActivity(View source, int code);
 
     void openAddPlayerActivityForResult(View source, int code);
 

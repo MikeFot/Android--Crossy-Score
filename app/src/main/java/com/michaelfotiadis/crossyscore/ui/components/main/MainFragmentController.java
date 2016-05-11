@@ -7,6 +7,7 @@ import com.michaelfotiadis.crossyscore.common.models.score.Score;
 import com.michaelfotiadis.crossyscore.common.responses.CrossyCallback;
 import com.michaelfotiadis.crossyscore.common.responses.CrossyDeliverable;
 import com.michaelfotiadis.crossyscore.common.responses.CrossyError;
+import com.michaelfotiadis.crossyscore.core.CrossyCore;
 import com.michaelfotiadis.crossyscore.data.error.UiDataLoadError;
 import com.michaelfotiadis.crossyscore.data.factory.ScoreUiWrapperFactory;
 import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderAbstract;
@@ -46,7 +47,7 @@ import java.util.List;
     }
 
     public void loadData() {
-
+        AppLog.d("Loading data");
         final DataFeedLoaderAbstract<Score> scoreLoader = new ScoreLoader(getActivity());
 
         scoreLoader.setCallback(new DataFeedLoaderCallback<Score>() {
@@ -69,15 +70,25 @@ import java.util.List;
                         if (deliverable.getContent().size() == 0) {
                             mRecyclerManager.setError("Nothing to see here yet");
                         } else {
+                            mRecyclerManager.clearError();
                             mRecyclerManager.setItems(deliverable.getContent());
+                            AppLog.d("Recycler has items: " + mRecyclerManager.getItemCount());
                         }
                     }
                 });
-
-
             }
         });
         scoreLoader.loadData();
+    }
+
+    public void saveScore(final Score score) {
+        if (score != null) {
+            AppLog.d("Created score " + score);
+            CrossyCore.getDataProvider().getScores().upsert(score);
+            loadData();
+        } else {
+            AppLog.e("Score was null");
+        }
     }
 
 }

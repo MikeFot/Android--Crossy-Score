@@ -24,4 +24,9 @@ public class MainActivity extends BaseActivity {
         addContentFragmentIfMissing(MainFragment.newInstance(), FRAGMENT_TAG);
 
     }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG).onActivityResult(requestCode, resultCode, data);
+    }
 }

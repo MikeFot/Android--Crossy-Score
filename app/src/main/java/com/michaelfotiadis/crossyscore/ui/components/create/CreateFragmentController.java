@@ -1,6 +1,8 @@
 package com.michaelfotiadis.crossyscore.ui.components.create;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -10,7 +12,6 @@ import android.widget.AdapterView;
 import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
 import com.michaelfotiadis.crossyscore.common.models.player.Player;
 import com.michaelfotiadis.crossyscore.common.models.score.Score;
-import com.michaelfotiadis.crossyscore.core.CrossyCore;
 import com.michaelfotiadis.crossyscore.core.utils.score.ScoreUtils;
 import com.michaelfotiadis.crossyscore.data.error.UiDataLoadError;
 import com.michaelfotiadis.crossyscore.data.loader.DataFeedLoaderAbstract;
@@ -120,19 +121,18 @@ public class CreateFragmentController extends BaseController {
 
     }
 
-    protected void setPlayer(final Player player) {
-
-
-    }
-
     private void saveScore() {
+
         final Score score = buildScore();
+
         if (score != null) {
-            AppLog.d("Created score " + score);
-            CrossyCore.getDataProvider().getScores().upsert(score);
+            AppLog.d("Sending result: " + score.getId());
+            final Bundle data = new Bundle();
+            data.putParcelable(AppConstants.EXTRA_1, score);
+            final Intent intent = new Intent();
+            intent.putExtras(data);
+            getActivity().setResult(Activity.RESULT_OK, intent);
             getActivity().finish();
-        } else {
-            AppLog.e("Score was null");
         }
     }
 
@@ -223,6 +223,9 @@ public class CreateFragmentController extends BaseController {
             public void onSuccess(final List<Mascot> mascots) {
                 mMascots.clear();
                 mMascots.addAll(mascots);
+                if (TextUtils.isEmpty(mKeeper.getMascotId())) {
+                    setMascot(mascots.get(0));
+                }
                 loadScores();
             }
         });

@@ -17,6 +17,7 @@ import com.michaelfotiadis.crossyscore.ui.core.common.viewbinder.BaseViewBinder;
 import com.michaelfotiadis.crossyscore.ui.core.common.viewmanagement.SimpleUiStateKeeper;
 import com.michaelfotiadis.crossyscore.ui.core.common.viewmanagement.UiStateKeeper;
 import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
+import com.michaelfotiadis.crossyscore.utils.AppConstants;
 
 import butterknife.ButterKnife;
 
@@ -44,7 +45,7 @@ import butterknife.ButterKnife;
         holder.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                getIntentDispatcher().openCreateActivity(holder.fab);
+                getIntentDispatcher().openCreateActivity(holder.fab, AppConstants.REQUEST_CODE_3);
             }
         });
 

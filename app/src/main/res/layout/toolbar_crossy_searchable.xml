@@ -19,12 +19,16 @@
         android:visibility="gone"
         tools:text="Toolbar Title"/>
 
-    <EditText
-        android:id="@+id/search"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        tools:hint="Search..."/>
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            tools:hint="Search..."/>
+    </android.support.design.widget.TextInputLayout>
 
 
 </android.support.v7.widget.Toolbar>
