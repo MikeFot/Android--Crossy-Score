@@ -13,6 +13,8 @@ import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
 
 import java.util.Random;
 
+import butterknife.ButterKnife;
+
 /**
  *
  */
@@ -26,6 +28,8 @@ public class ListMascotViewBinder extends BaseViewDataBinder<ListMascotViewHolde
 
     @Override
     public void bind(final ListMascotViewHolder holder, final Mascot item) {
+
+        ButterKnife.bind(holder, holder.getRoot());
 
         if (item != null) {
             holder.image.setImageDrawable(getDrawable(item.getResId()));

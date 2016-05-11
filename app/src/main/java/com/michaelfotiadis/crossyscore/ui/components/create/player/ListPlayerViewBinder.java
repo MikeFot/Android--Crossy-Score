@@ -14,6 +14,8 @@ import com.michaelfotiadis.crossyscore.utils.date.DateUtils;
 
 import java.util.Random;
 
+import butterknife.ButterKnife;
+
 /**
  *
  */
@@ -31,6 +33,9 @@ public class ListPlayerViewBinder extends BaseViewDataBinder<ListPlayerViewHolde
 
     @Override
     public void bind(final ListPlayerViewHolder holder, final Player item) {
+
+        ButterKnife.bind(holder, holder.getRoot());
+
         if (item != null) {
             holder.image.setImageDrawable(getDrawable(item.getDrawableResId()));
             holder.title.setText(item.getName());

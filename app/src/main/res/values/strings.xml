@@ -1,13 +1,19 @@
 <resources>
 
+    <string name="title_add_player">Add a new player</string>
+    <string name="title_pick_mascot">Pick a mascot</string>
+    <string name="title_score_details">Score details</string>
+    <string name="title_create_score">Create a new score</string>
+
+    <string name="attr_checkbox">CheckBox</string>
 
     <string name="button_label_add_player">Add a new player</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_value_score">0</string>
+
     <string name="hint_player_name">Name</string>
     <string name="hint_player_alias">Alias</string>
-    <string name="attr_checkbox">CheckBox</string>
     <string name="hint_score">Score</string>
-    <string name="default_value_score">0</string>
+    <string name="hint_search_for_a_mascot">Search for a mascot…</string>
+
 </resources>

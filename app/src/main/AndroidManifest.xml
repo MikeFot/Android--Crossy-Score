@@ -23,13 +23,21 @@
             android:name="io.fabric.ApiKey"
             android:value="d936fe3caf46a1a4ffc49339b09d733af6a6b6b5"/>
 
-        <activity android:name=".ui.components.create.CreateActivity">
+        <activity android:name=".ui.components.create.CreateActivity"
+                  android:label="@string/title_create_score"
+                  android:parentActivityName=".ui.components.main.MainActivity">
         </activity>
-        <activity android:name=".ui.components.addplayer.AddPlayerActivity">
+        <activity android:name=".ui.components.addplayer.AddPlayerActivity"
+                  android:label="@string/title_add_player"
+                  android:parentActivityName=".ui.components.create.CreateActivity">
         </activity>
-        <activity android:name=".ui.components.mascotpicker.MascotPickerActivity">
+        <activity android:name=".ui.components.mascotpicker.MascotPickerActivity"
+                  android:label="@string/title_pick_mascot"
+                  android:parentActivityName=".ui.components.create.CreateActivity">
         </activity>
-        <activity android:name=".ui.components.scoredetails.ScoreDetailsActivity">
+        <activity android:name=".ui.components.scoredetails.ScoreDetailsActivity"
+                  android:label="@string/title_score_details"
+                  android:parentActivityName=".ui.components.main.MainActivity">
         </activity>
     </application>
 

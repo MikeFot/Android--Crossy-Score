@@ -3,22 +3,19 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@color/color_window_background"
                 android:orientation="vertical">
 
     <include
         android:id="@+id/toolbar_actionbar"
-        layout="@layout/toolbar_crossy"
+        layout="@layout/toolbar_crossy_searchable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"/>
 
     <LinearLayout
         android:id="@+id/fragment_container"
-        android:padding="@dimen/dimen_padding_small"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        tools:background="@color/color_window_background"
         android:layout_below="@id/toolbar_actionbar"
         android:orientation="vertical">
     </LinearLayout>

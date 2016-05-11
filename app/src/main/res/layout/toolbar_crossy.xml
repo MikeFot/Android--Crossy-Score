@@ -9,9 +9,10 @@
     android:layout_height="?actionBarSize">
 
     <TextView
-        android:id="@+id/simplelife_toolbar_title_view"
+        android:id="@+id/toolbar_title_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/NavTitle"
         android:ellipsize="end"
         android:singleLine="true"
         tools:text="Toolbar Title"/>

@@ -12,6 +12,8 @@ import android.view.WindowManager;
 
 import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.ui.core.common.actionbar.ActionBarred;
+import com.michaelfotiadis.crossyscore.ui.core.common.actionbar.CrossyActionBar;
+import com.michaelfotiadis.crossyscore.ui.core.common.actionbar.CrossyToolbar;
 import com.michaelfotiadis.crossyscore.ui.core.common.notifications.ActivityNotificationController;
 import com.michaelfotiadis.crossyscore.ui.core.common.notifications.SnackBarNotificationController;
 import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
@@ -25,7 +27,7 @@ import com.michaelfotiadis.crossyscore.utils.error.CrashlyticsLogKeyController;
  */
 public abstract class BaseActivity extends AppCompatActivity implements ActionBarred {
 
-    private Toolbar mCustomActionbar;
+    private CrossyActionBar mCustomActionbar;
     private ActivityNotificationController mNotificationController;
     private IntentDispatcher mIntentDispatcher;
 
@@ -37,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ActionBa
         }
     }
 
-    public Toolbar getToolBar() {
+    public CrossyActionBar getCustomActionBar() {
         return mCustomActionbar;
     }
 
@@ -129,7 +131,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ActionBa
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            mCustomActionbar = toolbar;
+            mCustomActionbar = new CrossyToolbar(this, toolbar);
             setTitle(getString(R.string.app_name));
         } else {
             AppLog.w(this.getClass().getName() + ": Null toolbar");

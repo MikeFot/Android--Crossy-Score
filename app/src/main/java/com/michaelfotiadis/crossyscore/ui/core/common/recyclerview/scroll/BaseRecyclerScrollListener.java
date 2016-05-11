@@ -2,7 +2,7 @@ package com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.scroll;
 
 import android.support.v7.widget.RecyclerView;
 
-public abstract class BaseRecyclerScroll extends RecyclerView.OnScrollListener {
+public abstract class BaseRecyclerScrollListener extends RecyclerView.OnScrollListener {
 
     static final float MINIMUM = 25;
     int scrollDist = 0;

@@ -26,6 +26,7 @@ import java.util.List;
  */
 public class MascotPickerController extends BaseController {
 
+    private final MascotPickerViewBinder mBinder;
     private final MascotPickerViewHolder mHolder;
     private final RecyclerManager<Mascot> mRecyclerManager;
 
@@ -33,6 +34,9 @@ public class MascotPickerController extends BaseController {
         super(activity, view);
 
         mHolder = new MascotPickerViewHolder(view);
+
+        mBinder = new MascotPickerViewBinder(getActivity(), createIntentDispatcher());
+        mBinder.bind(mHolder);
 
         mHolder.recyclerView.setHasFixedSize(true);
         mHolder.searchView.clearFocus();
@@ -54,9 +58,6 @@ public class MascotPickerController extends BaseController {
                 .setStateKeeper(uiStateKeeper)
                 .setEmptyMessage(null)
                 .build();
-
-        mHolder.searchView.setHint("Search for a mascot...");
-
 
         mHolder.searchView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 

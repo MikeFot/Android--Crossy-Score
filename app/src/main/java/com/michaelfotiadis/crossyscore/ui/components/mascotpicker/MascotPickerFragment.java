@@ -8,11 +8,12 @@ import android.view.ViewGroup;
 
 import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.ui.core.common.fragment.BaseFragment;
+import com.michaelfotiadis.crossyscore.ui.core.common.fragment.Searchable;
 
 /**
  *
  */
-public class MascotPickerFragment extends BaseFragment {
+public class MascotPickerFragment extends BaseFragment implements Searchable {
 
     private MascotPickerController mController;
 
@@ -43,4 +44,8 @@ public class MascotPickerFragment extends BaseFragment {
         mController.loadMascots();
     }
 
+    @Override
+    public void setFilter(final String filter) {
+
+    }
 }

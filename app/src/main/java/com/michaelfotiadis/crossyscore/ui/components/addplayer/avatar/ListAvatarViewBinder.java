@@ -10,6 +10,8 @@ import com.michaelfotiadis.crossyscore.data.models.ImageContainer;
 import com.michaelfotiadis.crossyscore.ui.core.common.viewbinder.BaseViewDataBinder;
 import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
 
+import butterknife.ButterKnife;
+
 /**
  *
  */
@@ -30,6 +32,9 @@ public class ListAvatarViewBinder extends BaseViewDataBinder<ListAvatarViewHolde
     @Override
     public void bind(final ListAvatarViewHolder holder,
                      final ImageContainer item) {
+
+        ButterKnife.bind(holder, holder.getRoot());
+
         if (item != null) {
             holder.image.setImageDrawable(getDrawable(item.getResId(), item.getTintColor()));
         } else {

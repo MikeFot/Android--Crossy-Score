@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_window_background"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingTop="@dimen/margin_8dp"
+        android:src="@drawable/ic_search_black_18dp"
+        android:tint="@color/color_primary_dark"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_search_for_a_mascot"
+            android:singleLine="true"
+            android:textColor="@color/md_grey_500"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+</LinearLayout>

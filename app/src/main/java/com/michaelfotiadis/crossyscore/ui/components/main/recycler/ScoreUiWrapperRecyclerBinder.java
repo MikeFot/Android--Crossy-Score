@@ -14,6 +14,8 @@ import com.michaelfotiadis.crossyscore.utils.date.DateUtils;
 
 import java.util.Random;
 
+import butterknife.ButterKnife;
+
 /**
  *
  */
@@ -27,6 +29,9 @@ public class ScoreUiWrapperRecyclerBinder extends BaseRecyclerViewBinder<ScoreUi
 
     @Override
     public void bind(final ScoreUiWrapperRecyclerViewHolder holder, final ScoreUiWrapper item) {
+
+        ButterKnife.bind(holder, holder.getRoot());
+
         if (item != null) {
             holder.scoreText.setText(String.valueOf(item.getValue()));
             holder.imageAvatar.setImageDrawable(getDrawable(item.getPlayerResId()));
