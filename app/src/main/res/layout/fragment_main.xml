@@ -16,7 +16,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_add_circle_white_24dp"
-        app:backgroundTint="@color/color_primary_dark"
+        app:backgroundTint="@color/color_accent_alt"
         app:borderWidth="@dimen/fab_border"
         app:elevation="@dimen/small_elevation"/>
 
