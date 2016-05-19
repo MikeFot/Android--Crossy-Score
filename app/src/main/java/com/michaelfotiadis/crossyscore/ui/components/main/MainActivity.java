@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.michaelfotiadis.crossyscore.R;
+import com.michaelfotiadis.crossyscore.ui.components.score.ScoreFragment;
 import com.michaelfotiadis.crossyscore.ui.core.common.activity.BaseActivity;
 
 public class MainActivity extends BaseActivity {
@@ -21,7 +22,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default_fragment_container);
 
-        addContentFragmentIfMissing(MainFragment.newInstance(), FRAGMENT_TAG);
+        addContentFragmentIfMissing(ScoreFragment.newInstance(), FRAGMENT_TAG);
 
     }
 

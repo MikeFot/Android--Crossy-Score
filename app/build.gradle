@@ -43,7 +43,8 @@ android {
         versionName semanticVersion
 
         proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                'proguard/proguard-gson.pro'
+                'proguard/proguard-gson.pro',
+                'proguard/reflective_drawable_loader.pro'
 
     }
 

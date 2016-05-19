@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.main;
+package com.michaelfotiadis.crossyscore.ui.components.score;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,12 +17,12 @@ import com.michaelfotiadis.crossyscore.utils.AppLog;
 /**
  *
  */
-public class MainFragment extends BaseFragment {
+public class ScoreFragment extends BaseFragment {
 
-    private MainFragmentController mController;
+    private ScoreFragmentController mController;
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static ScoreFragment newInstance() {
+        return new ScoreFragment();
     }
 
     @Nullable
@@ -33,7 +33,7 @@ public class MainFragment extends BaseFragment {
 
         final View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        mController = new MainFragmentController(getActivity(), view);
+        mController = new ScoreFragmentController(getActivity(), view);
 
         return view;
     }

@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.main;
+package com.michaelfotiadis.crossyscore.ui.components.score;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
@@ -12,14 +12,14 @@ import butterknife.Bind;
 /**
  *
  */
-public class MainFragmentViewHolder extends BaseViewHolder {
+public class ScoreFragmentViewHolder extends BaseViewHolder {
 
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
     @Bind(R.id.fab_add)
     FloatingActionButton fab;
 
-    public MainFragmentViewHolder(final View view) {
+    public ScoreFragmentViewHolder(final View view) {
         super(view);
     }
 }

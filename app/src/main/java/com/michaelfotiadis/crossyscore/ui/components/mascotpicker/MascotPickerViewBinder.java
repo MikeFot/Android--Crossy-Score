@@ -18,7 +18,7 @@ public class MascotPickerViewBinder extends BaseViewBinder<MascotPickerViewHolde
 
     @Override
     public void bind(final MascotPickerViewHolder holder) {
-        ButterKnife.bind(holder, holder.getRoot());
+
     }
 
     @Override

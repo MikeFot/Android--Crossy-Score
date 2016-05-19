@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.main;
+package com.michaelfotiadis.crossyscore.ui.components.score;
 
 import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,16 +24,16 @@ import butterknife.ButterKnife;
 /**
  *
  */
-/*package*/ class MainFragmentViewBinder extends BaseViewBinder<MainFragmentViewHolder> {
+/*package*/ class ScoreFragmentViewBinder extends BaseViewBinder<ScoreFragmentViewHolder> {
 
-    private MainFragmentViewHolder mHolder;
+    private ScoreFragmentViewHolder mHolder;
 
-    protected MainFragmentViewBinder(final Activity activity, final IntentDispatcher intentDispatcher) {
+    protected ScoreFragmentViewBinder(final Activity activity, final IntentDispatcher intentDispatcher) {
         super(activity, intentDispatcher);
     }
 
     @Override
-    public void bind(final MainFragmentViewHolder holder) {
+    public void bind(final ScoreFragmentViewHolder holder) {
 
         mHolder = holder;
 
@@ -55,7 +55,7 @@ import butterknife.ButterKnife;
     }
 
     @Override
-    public void reset(final MainFragmentViewHolder holder) {
+    public void reset(final ScoreFragmentViewHolder holder) {
 
     }
 
@@ -76,9 +76,9 @@ import butterknife.ButterKnife;
 
     private static class FabRecyclerScrollListener extends BaseRecyclerScrollListener {
 
-        private final MainFragmentViewHolder holder;
+        private final ScoreFragmentViewHolder holder;
 
-        public FabRecyclerScrollListener(final MainFragmentViewHolder holder) {
+        public FabRecyclerScrollListener(final ScoreFragmentViewHolder holder) {
             this.holder = holder;
         }
 

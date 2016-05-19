@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.main;
+package com.michaelfotiadis.crossyscore.ui.components.score;
 
 import android.app.Activity;
 import android.view.View;
@@ -23,20 +23,20 @@ import java.util.List;
 /**
  *
  */
-/*package*/ class MainFragmentController extends BaseController {
+/*package*/ class ScoreFragmentController extends BaseController {
 
-    private final MainFragmentViewBinder mBinder;
+    private final ScoreFragmentViewBinder mBinder;
     private final RecyclerManager<ScoreUiWrapper> mRecyclerManager;
     private final ScoreUiWrapperFactory mFactory;
 
-    public MainFragmentController(final Activity activity, final View view) {
+    public ScoreFragmentController(final Activity activity, final View view) {
         super(activity, view);
 
         mFactory = new ScoreUiWrapperFactory(activity);
 
-        mBinder = new MainFragmentViewBinder(activity, createIntentDispatcher());
+        mBinder = new ScoreFragmentViewBinder(activity, createIntentDispatcher());
 
-        mBinder.bind(new MainFragmentViewHolder(view));
+        mBinder.bind(new ScoreFragmentViewHolder(view));
 
         mRecyclerManager = mBinder.getRecyclerManager(view);
 

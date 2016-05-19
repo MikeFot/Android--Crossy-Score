@@ -8,6 +8,7 @@ import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.viewholder.BaseRecyclerViewHolder;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
 public final class MascotPickerRecyclerViewHolder extends BaseRecyclerViewHolder {
@@ -22,6 +23,7 @@ public final class MascotPickerRecyclerViewHolder extends BaseRecyclerViewHolder
 
     public MascotPickerRecyclerViewHolder(final View view) {
         super(view);
+        ButterKnife.bind(this, view);
     }
 
     public static int getLayoutId() {

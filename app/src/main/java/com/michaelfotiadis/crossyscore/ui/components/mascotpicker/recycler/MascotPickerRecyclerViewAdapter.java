@@ -23,7 +23,8 @@ public class MascotPickerRecyclerViewAdapter extends BaseRecyclerViewAdapter<Mas
 
     private final MascotPickerRecyclerBinder mBinder;
 
-    public MascotPickerRecyclerViewAdapter(final Activity activity, final IntentDispatcher intentDispatcher) {
+    public MascotPickerRecyclerViewAdapter(final Activity activity,
+                                           final IntentDispatcher intentDispatcher) {
         super(activity, intentDispatcher);
         mBinder = new MascotPickerRecyclerBinder(activity, intentDispatcher);
     }

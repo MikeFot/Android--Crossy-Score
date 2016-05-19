@@ -7,6 +7,7 @@ import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.ui.core.common.viewholder.BaseViewHolder;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  *
@@ -18,5 +19,6 @@ public class MascotPickerViewHolder extends BaseViewHolder {
 
     public MascotPickerViewHolder(final View view) {
         super(view);
+        ButterKnife.bind(this, view);
     }
 }
