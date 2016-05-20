@@ -17,6 +17,7 @@ public class ImageUtils {
 
     public static final int DEFAULT_IMAGE_PLACEHOLDER = R.drawable.ic_android_light_blue_300_18dp;
     private static final Pattern PATTERN_SPACE = Pattern.compile(" ");
+    private static final Pattern PATTERN_DASH = Pattern.compile("-");
     private static final Pattern PATTERN_SPECIAL = Pattern.compile("[^()|\\- a-zA-Z0-9]");
 
     private final Context mContext;
@@ -33,7 +34,8 @@ public class ImageUtils {
     }
 
     private static String sanitiseName(final String name) {
-        final String noSpecialCharacters = PATTERN_SPECIAL.matcher(name).replaceAll("_");
+        String noSpecialCharacters = PATTERN_SPECIAL.matcher(name).replaceAll("_");
+        noSpecialCharacters = PATTERN_DASH.matcher(noSpecialCharacters).replaceAll("_");
         return PATTERN_SPACE.matcher(noSpecialCharacters).replaceAll("_").toLowerCase();
     }
 
