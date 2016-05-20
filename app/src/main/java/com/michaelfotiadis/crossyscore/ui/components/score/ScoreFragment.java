@@ -12,13 +12,14 @@ import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.common.models.score.Score;
 import com.michaelfotiadis.crossyscore.ui.core.common.fragment.BaseFragment;
 import com.michaelfotiadis.crossyscore.ui.core.common.fragment.Searchable;
+import com.michaelfotiadis.crossyscore.ui.core.common.fragment.Sortable;
 import com.michaelfotiadis.crossyscore.utils.AppConstants;
 import com.michaelfotiadis.crossyscore.utils.AppLog;
 
 /**
  *
  */
-public class ScoreFragment extends BaseFragment implements Searchable {
+public class ScoreFragment extends BaseFragment implements Searchable, Sortable {
 
     private ScoreFragmentController mController;
 
@@ -65,7 +66,12 @@ public class ScoreFragment extends BaseFragment implements Searchable {
     }
 
     @Override
-    public void setFilter(String filter) {
+    public void setFilter(final String filter) {
         mController.setFilter(filter);
+    }
+
+    @Override
+    public void sort() {
+        mController.sort();
     }
 }

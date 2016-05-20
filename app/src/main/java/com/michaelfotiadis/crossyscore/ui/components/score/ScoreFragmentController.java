@@ -59,6 +59,18 @@ import java.util.List;
         }
     }
 
+    public void sort() {
+        if (mSearcher != null) {
+            mSearcher.sort(new FilterFinishedCallback<ScoreUiWrapper>() {
+                @Override
+                public void onSearchFinished(final List<ScoreUiWrapper> results) {
+                    mRecyclerManager.clearError();
+                    mRecyclerManager.setItems(results);
+                }
+            });
+        }
+    }
+
     public void loadData() {
         AppLog.d("Loading data");
         final DataFeedLoaderAbstract<Score> scoreLoader = new ScoreLoader(getActivity());

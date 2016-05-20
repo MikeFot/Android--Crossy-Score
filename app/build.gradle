@@ -50,11 +50,11 @@ android {
     productFlavors {
         prod {
             applicationId "com.michaelfotiadis.crossyscore"
-            resValue("string", "app_name", "Crossy Score")
+            resValue("string", "app_name", "Crossy Scoreboard")
         }
         dev {
             applicationId "com.michaelfotiadis.crossyscore"
-            resValue("string", "app_name", "Crossy Score Dev")
+            resValue("string", "app_name", "Crossy Scoreboard Dev")
         }
     }
 

@@ -13,6 +13,7 @@ import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.ui.components.score.ScoreFragment;
 import com.michaelfotiadis.crossyscore.ui.core.common.activity.BaseActivity;
 import com.michaelfotiadis.crossyscore.ui.core.common.fragment.Searchable;
+import com.michaelfotiadis.crossyscore.ui.core.common.fragment.Sortable;
 import com.michaelfotiadis.crossyscore.utils.AppLog;
 
 public class MainActivity extends BaseActivity {
@@ -42,8 +43,26 @@ public class MainActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(final Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
 
-        final MenuItem searchMenu = menu.findItem(R.id.action_search);
+        setupSearchMenu(menu.findItem(R.id.action_search));
 
+        setupSortMenu(menu.findItem(R.id.action_sort));
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void setupSortMenu(final MenuItem sortMenu) {
+
+        sortMenu.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(final MenuItem menuItem) {
+                sortData();
+                return true;
+            }
+        });
+
+    }
+
+    private void setupSearchMenu(final MenuItem searchMenu) {
         // Initialise the searchview
         @SuppressWarnings("ConstantConditions")
         final SearchView searchView = new SearchView(this.getSupportActionBar().getThemedContext());
@@ -70,7 +89,16 @@ public class MainActivity extends BaseActivity {
 
         // Add an expand listener
         MenuItemCompat.setOnActionExpandListener(searchMenu, new MyOnActionExpandListener());
-        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void sortData() {
+        final Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+        if (Sortable.class.isInstance(fragment)) {
+            ((Sortable) fragment).sort();
+        } else {
+            AppLog.w("Fragment is not sortable");
+        }
+
     }
 
     private void submitQuery(final String query) {
