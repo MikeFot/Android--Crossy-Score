@@ -10,7 +10,46 @@ The application is using 3 modules:
 - app: contains base UI components, their implementations and dedicated data loaders.
 
 ## Screenshots
+Home Screen (no data)
+
+![Alt text](/screens/screen1.png?raw=true "Home Screen (no data)")
+
+Add Score Screen
+
+![Alt text](/screens/screen10.png?raw=true "Add Score Screen")
+
+Create a new player
+
+![Alt text](/screens/screen2.png?raw=true "Create a new player")
+
+Pick a mascot
+
+![Alt text](/screens/screen3.png?raw=true "Pick a mascot")
+
+Mascot search
+
+![Alt text](/screens/screen4.png?raw=true "Mascot search")
+
+Home Screen (2 entries)
+
+![Alt text](/screens/screen5.png?raw=true "Home Screen (2 entries)")
+
+Home Screen (multiple entries, sorted by timestamp)
+
+![Alt text](/screens/screen6.png?raw=true "Home Screen (multiple entries, sorted by timestamp)")
+
+Home Screen (multiple entries, sorted by score)
+
+![Alt text](/screens/screen7.png?raw=true "Home Screen (multiple entries, sorted by score)")
+
+Home Screen (search functionality)
+
+![Alt text](/screens/screen8.png?raw=true "Home Screen (search functionality)")
+
+Home Screen (delete functionality)
+
+![Alt text](/screens/screen9.png?raw=true "Home Screen (delete functionality)")
 
 
-## Still in progress!
+Available on Google store (link will be provided soon)
 
