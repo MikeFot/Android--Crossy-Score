@@ -14,9 +14,9 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
-final int versionMajor = 0
+final int versionMajor = 1
 final int versionMinor = 0
-final int versionPatch = 1
+final int versionPatch = 0
 final String semanticVersion = "${versionMajor}.${versionMinor}.${versionPatch}"
 final String appCompatLibVersion = "23.4.0"
 
