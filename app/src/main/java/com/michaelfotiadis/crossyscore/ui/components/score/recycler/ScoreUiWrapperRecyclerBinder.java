@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.main.recycler;
+package com.michaelfotiadis.crossyscore.ui.components.score.recycler;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,6 +10,7 @@ import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.data.models.ScoreUiWrapper;
 import com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.viewbinder.BaseRecyclerViewBinder;
 import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
+import com.michaelfotiadis.crossyscore.utils.ImageUtils;
 import com.michaelfotiadis.crossyscore.utils.date.DateUtils;
 
 import java.util.Random;
@@ -23,8 +24,11 @@ public class ScoreUiWrapperRecyclerBinder extends BaseRecyclerViewBinder<ScoreUi
 
     private static final int DEFAULT_IMAGE_PLACEHOLDER = R.drawable.ic_android_light_blue_300_18dp;
 
+    private final ImageUtils mImageUtils;
+
     protected ScoreUiWrapperRecyclerBinder(final Context context, final IntentDispatcher intentDispatcher) {
         super(context, intentDispatcher);
+        mImageUtils = new ImageUtils(context);
     }
 
     @Override
@@ -36,6 +40,10 @@ public class ScoreUiWrapperRecyclerBinder extends BaseRecyclerViewBinder<ScoreUi
             holder.scoreText.setText(String.valueOf(item.getValue()));
             holder.imageAvatar.setImageDrawable(getDrawable(item.getPlayerResId()));
             holder.imageMascot.setImageDrawable(getDrawable(item.getMascotResId()));
+
+            mImageUtils.loadImageToViewReflectively(
+                    holder.imageMascot, item.getMascotName(), ImageUtils.IMAGE_TYPE.LIST);
+
             holder.playerName.setText(item.getPlayerName());
             holder.mascotName.setText(item.getMascotName());
             holder.timeStamp.setText(DateUtils.getTimeAgoForLong(item.getTimeStamp()));

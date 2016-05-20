@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.main.recycler;
+package com.michaelfotiadis.crossyscore.ui.components.score.recycler;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

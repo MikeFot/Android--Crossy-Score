@@ -10,7 +10,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.data.models.ScoreUiWrapper;
-import com.michaelfotiadis.crossyscore.ui.components.main.recycler.ScoreUiWrapperRecyclerViewAdapter;
+import com.michaelfotiadis.crossyscore.ui.components.score.recycler.ScoreUiWrapperRecyclerViewAdapter;
 import com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.manager.RecyclerManager;
 import com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.scroll.BaseRecyclerScrollListener;
 import com.michaelfotiadis.crossyscore.ui.core.common.viewbinder.BaseViewBinder;
@@ -27,6 +27,7 @@ import butterknife.ButterKnife;
 /*package*/ class ScoreFragmentViewBinder extends BaseViewBinder<ScoreFragmentViewHolder> {
 
     private ScoreFragmentViewHolder mHolder;
+
 
     protected ScoreFragmentViewBinder(final Activity activity, final IntentDispatcher intentDispatcher) {
         super(activity, intentDispatcher);

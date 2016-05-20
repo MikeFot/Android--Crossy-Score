@@ -10,6 +10,7 @@ import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.common.models.mascot.Mascot;
 import com.michaelfotiadis.crossyscore.ui.core.common.viewbinder.BaseViewDataBinder;
 import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
+import com.michaelfotiadis.crossyscore.utils.ImageUtils;
 
 import java.util.Random;
 
@@ -22,8 +23,11 @@ public class ListMascotViewBinder extends BaseViewDataBinder<ListMascotViewHolde
 
     private static final int DEFAULT_IMAGE_PLACEHOLDER = R.drawable.ic_android_light_blue_300_18dp;
 
+    private final ImageUtils mImageUtils;
+
     public ListMascotViewBinder(final Context context, final IntentDispatcher intentDispatcher) {
         super(context, intentDispatcher);
+        mImageUtils = new ImageUtils(context);
     }
 
     @Override
@@ -32,24 +36,12 @@ public class ListMascotViewBinder extends BaseViewDataBinder<ListMascotViewHolde
         ButterKnife.bind(holder, holder.getRoot());
 
         if (item != null) {
-            holder.image.setImageDrawable(getDrawable(item.getResId()));
+            mImageUtils.loadImageToViewReflectively(
+                    holder.image, item.getName(), ImageUtils.IMAGE_TYPE.LIST);
             holder.title.setText(item.getName());
             holder.subTitle.setText(item.getRelease());
         }
 
-    }
-
-    private Drawable getDrawable(final Integer resId) {
-        final Drawable drawable;
-        if (resId == null) {
-            drawable = ActivityCompat.getDrawable(getContext(), DEFAULT_IMAGE_PLACEHOLDER);
-            final Random rnd = new Random();
-            final int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-            DrawableCompat.setTint(drawable, color);
-        } else {
-            drawable = ActivityCompat.getDrawable(getContext(), resId);
-        }
-        return drawable;
     }
 
     @Override

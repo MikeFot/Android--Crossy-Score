@@ -1,4 +1,4 @@
-package com.michaelfotiadis.crossyscore.ui.components.main.recycler;
+package com.michaelfotiadis.crossyscore.ui.components.score.recycler;
 
 import android.view.View;
 import android.widget.ImageView;
