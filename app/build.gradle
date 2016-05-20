@@ -14,12 +14,11 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
-
 final int versionMajor = 0
 final int versionMinor = 0
 final int versionPatch = 1
 final String semanticVersion = "${versionMajor}.${versionMinor}.${versionPatch}"
-final String appCompatLibVersion = "23.3.0"
+final String appCompatLibVersion = "23.4.0"
 
 final int targetSdk = rootProject.targetSdkVersion;
 final int minSdkRed = rootProject.minSdkVersion;
@@ -54,7 +53,7 @@ android {
             resValue("string", "app_name", "Crossy Score")
         }
         dev {
-            applicationId "com.michaelfotiadis.crossyscore.playground"
+            applicationId "com.michaelfotiadis.crossyscore"
             resValue("string", "app_name", "Crossy Score Dev")
         }
     }
@@ -64,16 +63,12 @@ android {
         release {
             minifyEnabled false
             debuggable false
-
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
             buildConfigField "Boolean", "DEV_MODE", "false"
         }
 
         debug {
             testCoverageEnabled true
             debuggable true
-
             buildConfigField "Boolean", "DEV_MODE", "true"
         }
 
