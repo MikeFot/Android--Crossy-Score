@@ -12,6 +12,8 @@ import com.michaelfotiadis.crossyscore.data.loader.MascotLoader;
 import com.michaelfotiadis.crossyscore.ui.components.mascotpicker.recycler.MascotPickerRecyclerViewAdapter;
 import com.michaelfotiadis.crossyscore.ui.core.common.controller.BaseController;
 import com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.manager.RecyclerManager;
+import com.michaelfotiadis.crossyscore.ui.core.common.search.DataFilter;
+import com.michaelfotiadis.crossyscore.ui.core.common.search.FilterFinishedCallback;
 import com.michaelfotiadis.crossyscore.ui.core.common.viewmanagement.SimpleUiStateKeeper;
 import com.michaelfotiadis.crossyscore.ui.core.common.viewmanagement.UiStateKeeper;
 import com.michaelfotiadis.crossyscore.utils.AppLog;
@@ -26,6 +28,8 @@ public class MascotPickerController extends BaseController {
     private final MascotPickerViewBinder mBinder;
     private final MascotPickerViewHolder mHolder;
     private final RecyclerManager<Mascot> mRecyclerManager;
+
+    protected MascotSearcher mSearcher;
 
     public MascotPickerController(final Activity activity, final View view) {
         super(activity, view);
@@ -57,13 +61,6 @@ public class MascotPickerController extends BaseController {
 
     }
 
-    public void setFilter(final String query) {
-
-        AppLog.d("Search parameters: " + query);
-        // TODO set filter
-
-    }
-
     protected void loadMascots() {
         final DataFeedLoaderAbstract<Mascot> mascotLoader = new MascotLoader(getActivity());
         mRecyclerManager.updateUiState();
@@ -76,12 +73,32 @@ public class MascotPickerController extends BaseController {
 
             @Override
             public void onSuccess(final List<Mascot> mascots) {
-                mRecyclerManager.setItems(mascots);
-                mRecyclerManager.clearError();
+
+                mSearcher = new MascotSearcher(mascots);
+                mSearcher.setEmptyQueryBehaviour(DataFilter.EmptyQueryBehaviour.SHOW_ALL);
+                mSearcher.filter(null, new FilterFinishedCallback<Mascot>() {
+                    @Override
+                    public void onSearchFinished(final List<Mascot> results) {
+                        mRecyclerManager.clearError();
+                        mRecyclerManager.setItems(results);
+                    }
+                });
             }
         });
 
         mascotLoader.loadData();
+    }
+
+    public void setFilter(final String filter) {
+        AppLog.d("Search parameters: " + filter);
+        if (mSearcher != null) {
+            mSearcher.filter(filter, new FilterFinishedCallback<Mascot>() {
+                @Override
+                public void onSearchFinished(final List<Mascot> results) {
+                    mRecyclerManager.setItems(results);
+                }
+            });
+        }
     }
 
 }

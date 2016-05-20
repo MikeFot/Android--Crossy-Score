@@ -11,13 +11,14 @@ import android.view.ViewGroup;
 import com.michaelfotiadis.crossyscore.R;
 import com.michaelfotiadis.crossyscore.common.models.score.Score;
 import com.michaelfotiadis.crossyscore.ui.core.common.fragment.BaseFragment;
+import com.michaelfotiadis.crossyscore.ui.core.common.fragment.Searchable;
 import com.michaelfotiadis.crossyscore.utils.AppConstants;
 import com.michaelfotiadis.crossyscore.utils.AppLog;
 
 /**
  *
  */
-public class ScoreFragment extends BaseFragment {
+public class ScoreFragment extends BaseFragment implements Searchable {
 
     private ScoreFragmentController mController;
 
@@ -61,5 +62,10 @@ public class ScoreFragment extends BaseFragment {
             default:
                 super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    @Override
+    public void setFilter(String filter) {
+        mController.setFilter(filter);
     }
 }

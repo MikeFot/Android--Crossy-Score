@@ -46,6 +46,6 @@ public class MascotPickerFragment extends BaseFragment implements Searchable {
 
     @Override
     public void setFilter(final String filter) {
-
+        mController.setFilter(filter);
     }
 }

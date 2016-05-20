@@ -15,5 +15,9 @@
     <string name="hint_player_alias">Alias</string>
     <string name="hint_score">Score</string>
     <string name="hint_search_for_a_mascot">Search for a mascot…</string>
+    <string name="search">Search</string>
+    <string name="action_delete">Delete</string>
+    <string name="hint_search">Search…</string>
+    <string name="sort">Sort</string>
 
 </resources>

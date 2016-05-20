@@ -25,6 +25,8 @@ public final class ScoreUiWrapperRecyclerViewHolder extends BaseRecyclerViewHold
     protected ImageView imageAvatar;
     @Bind(R.id.image_mascot)
     protected ImageView imageMascot;
+    @Bind(R.id.more_view)
+    protected View moreView;
 
     public ScoreUiWrapperRecyclerViewHolder(final View view) {
         super(view);

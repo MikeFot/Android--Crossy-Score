@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 
 import com.michaelfotiadis.crossyscore.data.models.ScoreUiWrapper;
 import com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.adapter.BaseRecyclerViewAdapter;
+import com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.viewbinder.ItemCallbacks;
 import com.michaelfotiadis.crossyscore.ui.core.intent.dispatch.IntentDispatcher;
+import com.michaelfotiadis.crossyscore.utils.AppLog;
 
 /**
  *
@@ -18,7 +20,14 @@ public class ScoreUiWrapperRecyclerViewAdapter extends BaseRecyclerViewAdapter<S
 
     public ScoreUiWrapperRecyclerViewAdapter(final Activity activity, final IntentDispatcher intentDispatcher) {
         super(activity, intentDispatcher);
-        mBinder = new ScoreUiWrapperRecyclerBinder(activity, intentDispatcher);
+        mBinder = new ScoreUiWrapperRecyclerBinder(activity, intentDispatcher,
+                new ItemCallbacks<ScoreUiWrapper>() {
+                    @Override
+                    public void onRemovalRequested(final ScoreUiWrapper item) {
+                        AppLog.d("Asked to remove: " + item);
+                        removeItem(item);
+                    }
+                });
     }
 
     @Override

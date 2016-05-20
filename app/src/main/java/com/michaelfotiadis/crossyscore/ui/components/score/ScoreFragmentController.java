@@ -16,6 +16,8 @@ import com.michaelfotiadis.crossyscore.data.loader.ScoreLoader;
 import com.michaelfotiadis.crossyscore.data.models.ScoreUiWrapper;
 import com.michaelfotiadis.crossyscore.ui.core.common.controller.BaseController;
 import com.michaelfotiadis.crossyscore.ui.core.common.recyclerview.manager.RecyclerManager;
+import com.michaelfotiadis.crossyscore.ui.core.common.search.DataFilter;
+import com.michaelfotiadis.crossyscore.ui.core.common.search.FilterFinishedCallback;
 import com.michaelfotiadis.crossyscore.utils.AppLog;
 
 import java.util.List;
@@ -28,6 +30,7 @@ import java.util.List;
     private final ScoreFragmentViewBinder mBinder;
     private final RecyclerManager<ScoreUiWrapper> mRecyclerManager;
     private final ScoreUiWrapperFactory mFactory;
+    protected ScoreWrapperSearcher mSearcher;
 
     public ScoreFragmentController(final Activity activity, final View view) {
         super(activity, view);
@@ -44,6 +47,16 @@ import java.util.List;
             throw new NullPointerException("Recycler manager cannot be null");
         }
 
+    }
+
+    public void saveScore(final Score score) {
+        if (score != null) {
+            AppLog.d("Created score " + score);
+            CrossyCore.getDataProvider().getScores().upsert(score);
+            loadData();
+        } else {
+            AppLog.e("Score was null");
+        }
     }
 
     public void loadData() {
@@ -67,12 +80,21 @@ import java.util.List;
 
                     @Override
                     public void onSuccess(final CrossyDeliverable<List<ScoreUiWrapper>> deliverable) {
-                        if (deliverable.getContent().size() == 0) {
+                        if (deliverable.getContent().isEmpty()) {
                             mRecyclerManager.setError("Nothing to see here yet");
                         } else {
-                            mRecyclerManager.clearError();
-                            mRecyclerManager.setItems(deliverable.getContent());
-                            AppLog.d("Recycler has items: " + mRecyclerManager.getItemCount());
+
+                            mSearcher = new ScoreWrapperSearcher(deliverable.getContent());
+                            mSearcher.setEmptyQueryBehaviour(DataFilter.EmptyQueryBehaviour.SHOW_ALL);
+                            mSearcher.filter(null, new FilterFinishedCallback<ScoreUiWrapper>() {
+                                @Override
+                                public void onSearchFinished(final List<ScoreUiWrapper> results) {
+                                    mRecyclerManager.clearError();
+                                    mRecyclerManager.setItems(deliverable.getContent());
+                                    AppLog.d("Recycler has items: " + mRecyclerManager.getItemCount());
+                                }
+                            });
+
                         }
                     }
                 });
@@ -81,14 +103,16 @@ import java.util.List;
         scoreLoader.loadData();
     }
 
-    public void saveScore(final Score score) {
-        if (score != null) {
-            AppLog.d("Created score " + score);
-            CrossyCore.getDataProvider().getScores().upsert(score);
-            loadData();
-        } else {
-            AppLog.e("Score was null");
+    public void setFilter(final String filter) {
+        AppLog.d("Search parameters: " + filter);
+        if (mSearcher != null) {
+            mSearcher.filter(filter, new FilterFinishedCallback<ScoreUiWrapper>() {
+                @Override
+                public void onSearchFinished(final List<ScoreUiWrapper> results) {
+                    mRecyclerManager.setItems(results);
+                }
+            });
         }
-    }
 
+    }
 }

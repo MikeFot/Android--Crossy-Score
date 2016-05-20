@@ -108,7 +108,6 @@ public class ScoreUiWrapperFactory {
         for (final Score score : mScores) {
 
             final ScoreUiWrapperImpl.Builder builder = ScoreUiWrapperImpl.newBuilder();
-
             builder.withValue(score.getValue());
             builder.withTimeStamp(score.getTimeStamp());
 
