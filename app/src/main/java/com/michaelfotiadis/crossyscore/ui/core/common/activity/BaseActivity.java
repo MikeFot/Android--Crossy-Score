@@ -124,7 +124,9 @@ public abstract class BaseActivity extends AppCompatActivity implements ActionBa
 
     @Override
     public void setTitle(final CharSequence title) {
-        mCustomActionbar.setTitle(title);
+        if (mCustomActionbar != null) {
+            mCustomActionbar.setTitle(title);
+        }
     }
 
     protected void setupActionbar() {

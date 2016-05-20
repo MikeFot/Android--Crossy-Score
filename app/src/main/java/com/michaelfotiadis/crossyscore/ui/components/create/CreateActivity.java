@@ -19,6 +19,7 @@ public class CreateActivity extends BaseActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default_fragment_container);
+        setTitle(R.string.title_create_score);
         addContentFragmentIfMissing(CreateFragment.newInstance(), FRAGMENT_TAG);
 
     }

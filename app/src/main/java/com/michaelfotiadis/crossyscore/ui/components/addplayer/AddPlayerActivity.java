@@ -19,6 +19,7 @@ public class AddPlayerActivity extends BaseActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default_fragment_container);
+        setTitle(getString(R.string.title_create_player));
         addContentFragmentIfMissing(AddPlayerFragment.newInstance(), FRAGMENT_TAG);
     }
 }

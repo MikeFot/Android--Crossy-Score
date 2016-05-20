@@ -31,6 +31,7 @@ public class MascotPickerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default_fragment_container);
 
+        setTitle(R.string.title_pick_mascot);
 
         addContentFragmentIfMissing(
                 MascotPickerFragment.newInstance(),

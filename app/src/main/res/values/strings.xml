@@ -1,7 +1,7 @@
 <resources>
 
     <string name="title_add_player">Add a new player</string>
-    <string name="title_pick_mascot">Pick a mascot</string>
+    <string name="title_pick_mascot">Pick a character</string>
     <string name="title_score_details">Score details</string>
     <string name="title_create_score">Create a new score</string>
 
@@ -19,5 +19,6 @@
     <string name="action_delete">Delete</string>
     <string name="hint_search">Search…</string>
     <string name="sort">Sort</string>
+    <string name="title_create_player">Create a new player</string>
 
 </resources>

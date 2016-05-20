@@ -76,7 +76,10 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:layout_margin="@dimen/margin_8dp"
+            android:layout_marginBottom="@dimen/margin_8dp"
+            android:layout_marginLeft="@dimen/margin_8dp"
+            android:layout_marginRight="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_8dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -102,6 +105,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:src="@drawable/ic_more_vert_white_18dp"
+            android:tint="@color/color_primary_dark"
             tools:ignore="RtlHardcoded"/>
 
     </RelativeLayout>
