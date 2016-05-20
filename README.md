@@ -9,6 +9,8 @@ The application is using 3 modules:
 - core: contains internal data providers and core business logic
 - app: contains base UI components, their implementations and dedicated data loaders.
 
+## Screenshots
+![Alt text](/screens/screen1.png?raw=true "Empty Home Screen")
 
 ## Still in progress!
 
