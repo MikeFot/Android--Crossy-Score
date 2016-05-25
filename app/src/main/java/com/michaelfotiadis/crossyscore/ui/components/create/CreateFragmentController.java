@@ -143,7 +143,11 @@ public class CreateFragmentController extends BaseController {
         if (TextUtils.isEmpty(value)) {
             return -1;
         } else {
-            return Integer.valueOf(value);
+            try {
+                return Integer.valueOf(value);
+            } catch (final NumberFormatException e) {
+                return 0;
+            }
         }
 
     }
