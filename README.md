@@ -3,6 +3,8 @@ Android Material Design application for manually recording Crossy Road scores wh
 
 Perfect for parties!
 
+<a href="https://play.google.com/store/apps/details?id=com.michaelfotiadis.crossyscore&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1"><img alt="Get it on Google Play" src="http://s22.postimg.org/stmzfw631/en_play_badge.png" /></a>
+
 ## Structure
 The application is using 3 modules: 
 - common: contains all of the app models and basic interfaces / response objects,
